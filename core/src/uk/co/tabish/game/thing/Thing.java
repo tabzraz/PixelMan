@@ -3,6 +3,7 @@ package uk.co.tabish.game.thing;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import uk.co.tabish.game.pixelman.PixelManGame;
 
 public class Thing {
@@ -17,6 +18,8 @@ public class Thing {
     private float width;
     private float height;
 
+    private Rectangle bounds;
+
     private Texture self;
     private boolean debugTexture = true;
 
@@ -25,9 +28,19 @@ public class Thing {
         this.y = y;
         this.width = width;
         this.height = height;
+        bounds = new Rectangle(x,y,width,height);
     }
 
     public void update() {
+
+    }
+
+    public Rectangle bounds() {
+        bounds.setPosition(x,y);
+        return bounds;
+    }
+
+    public void collided(Thing thing, float xVector, float yVector) {
 
     }
 

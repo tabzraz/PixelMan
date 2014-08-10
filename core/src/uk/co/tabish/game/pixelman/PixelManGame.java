@@ -41,8 +41,10 @@ public class PixelManGame extends TwoDimensionalGame {
     public void processInput() {
 
         //Hard coded input for the time being
+        //Move this into an input handling
         input().left = Gdx.input.isKeyPressed(Input.Keys.A);
         input().right = Gdx.input.isKeyPressed(Input.Keys.D);
+        input().up = Gdx.input.isKeyPressed(Input.Keys.W);
     }
 
 }
