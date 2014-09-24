@@ -16,23 +16,23 @@ public class Player extends Thing {
     public static final float playerMaxYSpeed = 1000f;
 
     public static final float playerGroundHorizAccel = 4000f;
-    public static final float playerAirHorizAccel = 600f;
+    public static final float playerAirHorizAccel = 1000f;
 
     public static final float playerGroundFriction = 0.2f;
-    public static final float playerAirFriction = 0.05f;
+    public static final float playerAirFriction = 0.07f;
 
     public static final float playerGroundClampSpeed = 50f;
     public static final float playerAirClampSpeed = 0f;
-
-    public boolean playerInAir = false;
-
-    public boolean playerJumping = false;
 
     public static final float playerJumpSpeed = -300f;
 
     public static final float playerGravity = 600f;
     public static final float playerJumpingGravity = playerGravity * 0.6f;
 
+    //Player variables shared by components
+    public boolean playerInAir = false;
+
+    public boolean playerJumping = false;
 
     //Components
     private PlayerPhysicsComponent physicsComponent;

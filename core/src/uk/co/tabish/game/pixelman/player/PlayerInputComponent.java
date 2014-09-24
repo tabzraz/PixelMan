@@ -9,6 +9,9 @@ public class PlayerInputComponent {
 
     private InputState inputState;
 
+    //To prevent bunny hopping
+    private boolean letGoOfUp = true;
+
     public PlayerInputComponent() {
         inputState = PixelManGame.input();
     }
@@ -28,15 +31,22 @@ public class PlayerInputComponent {
         }
 
         //Make player jump if they are on the ground
-        if(inputState.up && !player.playerInAir) {
+        if(inputState.up && !player.playerInAir && letGoOfUp) {
             player.ySpeed = Player.playerJumpSpeed;
             player.playerJumping = true;
+            letGoOfUp = false;
         }
 
-        //Indiciate the player has let go of the jump button
+        //Indiciate the player has stopped jumping
         if(player.playerInAir && !inputState.up) {
             player.playerJumping = false;
         }
+
+        //Player has let go of the jump button
+        if(!inputState.up) {
+            letGoOfUp = true;
+        }
+
 
 
     }

@@ -45,8 +45,6 @@ public class GameScreen implements Screen {
     @Override
     public void update() {
 
-        //---Move things---
-
         //Update player
         player.update();
 
@@ -63,6 +61,7 @@ public class GameScreen implements Screen {
         }
 
         //Update Camera
+        //TODO: Update this
         camera.position.set(player.x+player.bounds().width/2f,player.y+player.bounds().height/2f,0f);
 
         camera.update();
