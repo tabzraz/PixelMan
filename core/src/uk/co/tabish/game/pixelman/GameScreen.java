@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
+import uk.co.tabish.game.pixelman.level.Level;
 import uk.co.tabish.game.pixelman.platform.Platform;
 import uk.co.tabish.game.pixelman.player.Player;
 import uk.co.tabish.game.thing.Thing;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameScreen implements Screen {
+
+    private Level level = new Level();
 
     private Player player;
 
@@ -25,7 +28,8 @@ public class GameScreen implements Screen {
     public void init() {
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(true,PixelManGame.width*1.5f, PixelManGame.height*1.5f);
+        //TODO: Sort scaling out
+        camera.setToOrtho(true,PixelManGame.width, PixelManGame.height);
 
         setupLevel();
 
@@ -62,6 +66,9 @@ public class GameScreen implements Screen {
 
         //Update Camera
         //TODO: Update this
+
+        //Dont pan camera when player is at the edge of the level
+        if(player.x < -1000)
         camera.position.set(player.x+player.bounds().width/2f,player.y+player.bounds().height/2f,0f);
 
         camera.update();

@@ -29,6 +29,8 @@ public class Player extends Thing {
     public static final float playerGravity = 600f;
     public static final float playerJumpingGravity = playerGravity * 0.6f;
 
+    public static final float playerWallSlidingFriction = 0.9f;
+
     //Player variables shared by components
     public boolean playerInAir = false;
 
@@ -62,6 +64,7 @@ public class Player extends Thing {
 
         //Move into a collision handling component
         if(thing instanceof Platform) {
+            //Vertical collision
             if(Math.abs(yVector)<Math.abs(xVector)) {
                 if(yVector < 0f) {
                     //Platform is underneath player
@@ -70,8 +73,14 @@ public class Player extends Thing {
                 ySpeed=0f;
 
             }
+
+            //Horizontal collision
             if(Math.abs(xVector)<Math.abs(yVector)) {
                 xSpeed=0f;
+                if(ySpeed > 0f) {
+                    //Player is sliding down a wall
+                    ySpeed *= playerWallSlidingFriction;
+                }
             }
         }
     }
