@@ -38,8 +38,8 @@ public class GameScreen implements Screen {
     private void setupLevel() {
         player = new Player(300,250);
         Platform ground = new Platform(0,300,1000,30);
-        Platform p1 = new Platform(200,200,100,30);
-        Platform p2 = new Platform(300,100,100,30);
+        Platform p1 = new Platform(200,270,100,10);
+        Platform p2 = new Platform(300,240,100,10);
 
         platforms.add(ground);
         platforms.add(p1);
