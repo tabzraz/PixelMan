@@ -22,14 +22,16 @@ public class GameScreen implements Screen {
     private List<Thing> platforms = new ArrayList<Thing>();
 
     //Private Camera
-    OrthographicCamera camera;
+    private OrthographicCamera camera;
+    private int cameraHeight = 200;
+    private int cameraWidth = 200;
 
     @Override
     public void init() {
 
         camera = new OrthographicCamera();
-        //TODO: Sort scaling out
-        camera.setToOrtho(true,PixelManGame.width, PixelManGame.height);
+        cameraWidth = cameraHeight * PixelManGame.width/PixelManGame.height;
+        camera.setToOrtho(true,cameraWidth,cameraHeight);
 
         setupLevel();
 
@@ -37,13 +39,18 @@ public class GameScreen implements Screen {
 
     private void setupLevel() {
         player = new Player(300,250);
-        Platform ground = new Platform(0,300,1000,30);
-        Platform p1 = new Platform(200,270,100,10);
-        Platform p2 = new Platform(300,240,100,10);
+        Platform ground = new Platform(10,270,480,30);
 
         platforms.add(ground);
-        platforms.add(p1);
-        platforms.add(p2);
+
+        for(int i=0; i<10;i++) {
+            Platform p = new Platform(i*50,240-i*10,30,10);
+            platforms.add(p);
+            Platform p1 = new Platform(400-i*50,120-i*10,30,10);
+            platforms.add(p1);
+        }
+
+        camera.position.set(cameraWidth/2f,level.getHeight()-cameraHeight/2f, 0f);
     }
 
     @Override
@@ -65,11 +72,35 @@ public class GameScreen implements Screen {
         }
 
         //Update Camera
-        //TODO: Update this
 
-        //Dont pan camera when player is at the edge of the level
-        if(player.x < -1000)
-        camera.position.set(player.x+player.bounds().width/2f,player.y+player.bounds().height/2f,0f);
+        //Horizontal panning
+        if(player.x >= cameraWidth/2f - player.bounds().width/2f && player.x <= level.getWidth() - cameraWidth/2f - player.bounds().width/2f) {
+            camera.position.set(player.x + player.bounds().width / 2f, camera.position.y, 0f);
+        } else if(player.x < cameraWidth/2f - player.bounds().width/2f) {
+            camera.position.set(cameraWidth/2f,camera.position.y,0f);
+        } else {
+            camera.position.set(level.getWidth() - cameraWidth/2f,camera.position.y,0f);
+        }
+
+        //Vertical panning
+        //Is the camera going to be pushed into an incorrect place, if so then correct it
+        if(player.y + cameraHeight/6f>= cameraHeight/2f && player.y+player.bounds().height-cameraHeight/6f <= level.getHeight() - cameraHeight/2f) {
+            //Player is within level, and vertical panning might be required
+            //Only pan if player is in the top or bottom third of the screen
+
+            if(player.y - (camera.position.y - cameraHeight/2f)<= cameraHeight/3f) {
+                //Player in top third
+                camera.position.set(camera.position.x, player.y + cameraHeight/6f,0f);
+            } else if(camera.position.y+cameraHeight/2f - (player.y+player.bounds().height) <= cameraHeight/3f) {
+                //Player in bottom third
+                camera.position.set(camera.position.x, player.y+player.bounds().height-cameraHeight/6f,0f);
+            }
+
+        } else if(player.y + cameraHeight/6f < cameraHeight/2f) {
+            camera.position.set(camera.position.x, cameraHeight/2f,0f);
+        } else {
+            camera.position.set(camera.position.x, level.getHeight() - cameraHeight/2f,0f);
+        }
 
         camera.update();
 

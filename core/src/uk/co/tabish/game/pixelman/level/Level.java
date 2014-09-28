@@ -2,8 +2,8 @@ package uk.co.tabish.game.pixelman.level;
 
 public class Level {
 
-    private int width = 1000;
-    private int height = 1000;
+    private int width = 500;
+    private int height = 300;
 
     public int getWidth() {
         return width;

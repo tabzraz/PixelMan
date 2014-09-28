@@ -31,6 +31,8 @@ public class Player extends Thing {
 
     public static final float playerWallSlidingFriction = 0.9f;
 
+    public static final float playerWallBounce = 10f;
+
     //Player variables shared by components
     public boolean playerInAir = false;
 
@@ -69,8 +71,11 @@ public class Player extends Thing {
                 if(yVector < 0f) {
                     //Platform is underneath player
                     playerInAir = false;
+                    ySpeed=0f;
+                } else {
+                    //Platform above player, 'bounce' player of
+                    ySpeed = playerWallBounce;
                 }
-                ySpeed=0f;
 
             }
 
