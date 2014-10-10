@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import uk.co.tabish.PixelManGame;
+import uk.co.tabish.game.pixelman.PixelManGame;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
