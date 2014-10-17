@@ -2,6 +2,7 @@ package uk.co.tabish.game.pixelman.player;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import uk.co.tabish.game.pixelman.platform.MovingPlatform;
 import uk.co.tabish.game.pixelman.platform.Platform;
 import uk.co.tabish.game.thing.Thing;
 
@@ -26,17 +27,21 @@ public class Player extends Thing {
 
     public static final float playerJumpSpeed = -100f;
 
-    public static final float playerGravity = 200f;
+    public static final float playerGravity = 280f;
     public static final float playerJumpingGravity = playerGravity * 0.6f;
 
     public static final float playerWallSlidingFriction = 0.9f;
 
     public static final float playerWallBounce = 10f;
 
+    public static final float playerDeathDistance = 4f;
+
     //Player variables shared by components
     public boolean playerInAir = false;
 
     public boolean playerJumping = false;
+
+    public boolean canDoubleJump = true;
 
     //Components
     private PlayerPhysicsComponent physicsComponent;
@@ -64,28 +69,45 @@ public class Player extends Thing {
     @Override
     public void collided(Thing thing, float xVector, float yVector) {
 
-        //Move into a collision handling component
+        //Todo: Move into a collision handling component
         if(thing instanceof Platform) {
             //Vertical collision
             if(Math.abs(yVector)<Math.abs(xVector)) {
                 if(yVector < 0f) {
                     //Platform is underneath player
                     playerInAir = false;
-                    ySpeed=0f;
+                    ySpeed=Math.min(ySpeed,thing.ySpeed);
+                    x+=thing.xSpeed*PlayerPhysicsComponent.timeDelta;
                 } else {
                     //Platform above player, 'bounce' player of
-                    ySpeed = playerWallBounce;
+                    ySpeed = thing.ySpeed+playerWallBounce;
                 }
 
             }
 
             //Horizontal collision
             if(Math.abs(xVector)<Math.abs(yVector)) {
-                xSpeed=0f;
+                if(xVector*xSpeed<0f) {
+                    //Player is moving into the platform
+                    /*
+                        This is to stop the player moving horizontally across a platform, being pushed outwards horiz in
+                        that direction on the last 'step' and being stopped.
+                     */
+                    xSpeed=0f;
+                }
                 if(ySpeed > 0f) {
                     //Player is sliding down a wall
                     ySpeed *= playerWallSlidingFriction;
                 }
+            }
+
+            //Death check
+            /*
+                If the player got squished between platforms and was moved a "long way" they are now dead
+            */
+            if(Math.min(Math.abs(xVector),Math.abs(yVector))>playerDeathDistance) {
+                System.out.println("Player Died: "+xVector+ " ,"+yVector);
+                //TODO: Player death behaviour
             }
         }
     }

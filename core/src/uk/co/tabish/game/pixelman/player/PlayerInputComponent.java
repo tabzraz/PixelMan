@@ -30,11 +30,18 @@ public class PlayerInputComponent {
             player.xAccel = 0;
         }
 
-        //Make player jump if they are on the ground
-        if(inputState.up && !player.playerInAir && letGoOfUp) {
+        //Make player jump if they are on the ground or can double jump
+        if(inputState.up && (!player.playerInAir || player.canDoubleJump) && letGoOfUp) {
             player.ySpeed = Player.playerJumpSpeed;
             player.playerJumping = true;
             letGoOfUp = false;
+            if(!player.playerInAir) {
+                //Starting a jump from the ground
+                player.canDoubleJump=true;
+            } else {
+                //In the air
+                player.canDoubleJump=false;
+            }
         }
 
         //Indiciate the player has stopped jumping

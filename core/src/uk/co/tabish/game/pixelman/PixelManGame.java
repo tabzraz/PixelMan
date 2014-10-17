@@ -15,6 +15,15 @@ import java.awt.*;
 
 public class PixelManGame extends TwoDimensionalGame {
 
+    /* TODO:
+       - Moving platforms
+       - Deadly platforms
+       - Slippery platforms
+       - 1-way-up platforms
+       - Enemies
+       - 'Level'
+     */
+
     //Screen constants
     public static final int LOADING_SCREEN = 3;
     public static final int GAME_SCREEN = 4;

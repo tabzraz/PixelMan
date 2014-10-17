@@ -4,7 +4,7 @@ import uk.co.tabish.game.thing.Thing;
 
 public class PlayerPhysicsComponent {
 
-    private static final float timeDelta = 1/60f;
+    public static final float timeDelta = 1/60f;
 
     private float maxXSpeed = Float.MAX_VALUE;
     private float maxYSpeed = Float.MAX_VALUE;
@@ -29,9 +29,19 @@ public class PlayerPhysicsComponent {
         } else {
             this.setXFriction(Player.playerGroundFriction);
             this.setXClampSpeed(Player.playerGroundClampSpeed);
+            if(!player.playerJumping) {
+                //Reset the ability to double jump unless you have just started jumping
+                /*
+                    The check is needed because on the first frame of the jump, at this point the playerInAir variable
+                    has not been set to true yet, since collisions are handled after updates.
+                    Without this reset the player can have double jumping allowed when they walk of a platform by
+                    only jumping once before walking of the platform.
+                */
+                player.canDoubleJump=false;
+            }
         }
 
-        //Player jumping
+        //---Player jumping---
 
         //Less gravity when jumping up
         if(player.playerJumping) {
@@ -44,6 +54,8 @@ public class PlayerPhysicsComponent {
         if(player.playerJumping && player.ySpeed>=0) {
             player.playerJumping = false;
         }
+
+        //---
 
         //---'Integrate'---
 
