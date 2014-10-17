@@ -76,7 +76,11 @@ public class Player extends Thing {
                 if(yVector < 0f) {
                     //Platform is underneath player
                     playerInAir = false;
-                    ySpeed=Math.min(ySpeed,thing.ySpeed);
+                    if(thing.ySpeed<=0f) {
+                        ySpeed=Math.min(ySpeed,thing.ySpeed);
+                    } else {
+                        ySpeed=thing.ySpeed;
+                    }
                     x+=thing.xSpeed*PlayerPhysicsComponent.timeDelta;
                 } else {
                     //Platform above player, 'bounce' player of
@@ -95,6 +99,7 @@ public class Player extends Thing {
                      */
                     xSpeed=0f;
                 }
+
                 if(ySpeed > 0f) {
                     //Player is sliding down a wall
                     ySpeed *= playerWallSlidingFriction;

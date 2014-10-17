@@ -16,11 +16,11 @@ import java.awt.*;
 public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
-       - Moving platforms
        - Deadly platforms
        - Slippery platforms
        - 1-way-up platforms
        - Enemies
+       - Player Death
        - 'Level'
      */
 

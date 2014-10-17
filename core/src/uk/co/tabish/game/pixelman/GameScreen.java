@@ -53,7 +53,7 @@ public class GameScreen implements Screen {
 
         MovingPlatform mv = new MovingPlatform(100,240,30,10,0f,-50f,0,150);
         platforms.add(mv);
-        MovingPlatform mv2 = new MovingPlatform(100,240,30,10,50f,0f,150,0);
+        MovingPlatform mv2 = new MovingPlatform(150,240,30,10,50f,0f,150,0);
         platforms.add(mv2);
 
         camera.position.set(cameraWidth/2f,level.getHeight()-cameraHeight/2f, 0f);
