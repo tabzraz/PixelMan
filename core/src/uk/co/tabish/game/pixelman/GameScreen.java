@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
 import uk.co.tabish.game.pixelman.level.Level;
+import uk.co.tabish.game.pixelman.platform.DeadlyPlatform;
+import uk.co.tabish.game.pixelman.platform.IcePlatform;
 import uk.co.tabish.game.pixelman.platform.MovingPlatform;
 import uk.co.tabish.game.pixelman.platform.Platform;
 import uk.co.tabish.game.pixelman.player.Player;
@@ -39,7 +41,12 @@ public class GameScreen implements Screen {
     }
 
     private void setupLevel() {
-        player = new Player(300,250);
+
+        //Reinit objects
+        player = new Player(100,250);
+        platforms = new ArrayList<Thing>();
+
+        //TODO: Add level loading here
         Platform ground = new Platform(10,270,480,30);
 
         platforms.add(ground);
@@ -51,12 +58,14 @@ public class GameScreen implements Screen {
             //platforms.add(p1);
         }
 
-        MovingPlatform mv = new MovingPlatform(100,240,30,10,0f,-50f,0,150);
-        platforms.add(mv);
-        MovingPlatform mv2 = new MovingPlatform(150,240,30,10,50f,0f,150,0);
-        platforms.add(mv2);
+        IcePlatform i1 = new IcePlatform(200,260,200,10);
+        platforms.add(i1);
 
         camera.position.set(cameraWidth/2f,level.getHeight()-cameraHeight/2f, 0f);
+    }
+
+    private void playerDied() {
+        setupLevel();
     }
 
     @Override
@@ -109,6 +118,11 @@ public class GameScreen implements Screen {
         }
 
         camera.update();
+
+        //Check if player died
+        if(player.playerDead) {
+            playerDied();
+        }
 
     }
 

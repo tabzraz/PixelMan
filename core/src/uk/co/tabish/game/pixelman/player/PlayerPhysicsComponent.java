@@ -6,40 +6,13 @@ public class PlayerPhysicsComponent {
 
     public static final float timeDelta = 1/60f;
 
-    private float maxXSpeed = Float.MAX_VALUE;
-    private float maxYSpeed = Float.MAX_VALUE;
-
     private float xFriction = 0f;
     private float yFriction = 0f;
 
     private float xClampSpeed = 0f;
     private float yClampSpeed = 0f;
 
-    public PlayerPhysicsComponent() {
-        this.setMaxYSpeed(Player.playerMaxXSpeed);
-        this.setMaxYSpeed(Player.playerMaxYSpeed);
-    }
-
     public void moveThing(Player player) {
-
-        //Change constants if in the air
-        if(player.playerInAir) {
-            this.setXFriction(Player.playerAirFriction);
-            this.setXClampSpeed(Player.playerAirClampSpeed);
-        } else {
-            this.setXFriction(Player.playerGroundFriction);
-            this.setXClampSpeed(Player.playerGroundClampSpeed);
-            if(!player.playerJumping) {
-                //Reset the ability to double jump unless you have just started jumping
-                /*
-                    The check is needed because on the first frame of the jump, at this point the playerInAir variable
-                    has not been set to true yet, since collisions are handled after updates.
-                    Without this reset the player can have double jumping allowed when they walk of a platform by
-                    only jumping once before walking of the platform.
-                */
-                player.canDoubleJump=false;
-            }
-        }
 
         //---Player jumping---
 
@@ -67,12 +40,12 @@ public class PlayerPhysicsComponent {
         player.ySpeed+=player.yAccel*timeDelta;
 
         //Check speeds are within bounds
-        if(Math.abs(player.xSpeed)>maxXSpeed) {
-            player.xSpeed = maxXSpeed * Math.signum(player.xSpeed);
+        if(Math.abs(player.xSpeed)>Player.playerMaxXSpeed) {
+            player.xSpeed = Player.playerMaxXSpeed * Math.signum(player.xSpeed);
         }
 
-        if(Math.abs(player.ySpeed)>maxYSpeed) {
-            player.ySpeed = maxYSpeed * Math.signum(player.ySpeed);
+        if(Math.abs(player.ySpeed)>Player.playerMaxYSpeed) {
+            player.ySpeed = Player.playerMaxYSpeed * Math.signum(player.ySpeed);
         }
 
         //If the speed is less than the clamp speed, set it to 0
@@ -88,14 +61,27 @@ public class PlayerPhysicsComponent {
 
         //---
 
-    }
+        //Change constants/values if in the air
+        if(player.playerInAir) {
+            this.setXFriction(Player.playerAirFriction);
+            this.setXClampSpeed(Player.playerAirClampSpeed);
+        } else {
+            this.setXFriction(Player.playerGroundFriction);
+            this.setXClampSpeed(Player.playerGroundClampSpeed);
+            if(!player.playerJumping) {
+                //Reset the ability to double jump unless you have just started jumping
+                /*
+                    The check is needed because on the first frame of the jump, at this point the playerInAir variable
+                    has not been set to true yet, since collisions are handled after updates.
+                    Without this reset the player can have double jumping allowed when they walk of a platform by
+                    only jumping once before walking of the platform.
+                */
+                player.canDoubleJump=false;
+            }
+            //Reset horizAccel
+            player.playerGroundHorizAccel = Player.playerGroundHorizAccelNormal;
+        }
 
-    public void setMaxXSpeed(float max) {
-        maxXSpeed = max;
-    }
-
-    public void setMaxYSpeed(float max) {
-        maxYSpeed = max;
     }
 
     public void setXFriction(float fric) {

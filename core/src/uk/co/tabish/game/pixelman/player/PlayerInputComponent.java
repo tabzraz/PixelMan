@@ -20,10 +20,10 @@ public class PlayerInputComponent {
 
         //Move player left or right with accel
         if(inputState.left && !inputState.right) {
-            player.xAccel = player.playerInAir ? -Player.playerAirHorizAccel : -Player.playerGroundHorizAccel;
+            player.xAccel = player.playerInAir ? -Player.playerAirHorizAccel : -player.playerGroundHorizAccel;
         }
         if(inputState.right && !inputState.left) {
-            player.xAccel = player.playerInAir ? Player.playerAirHorizAccel : Player.playerGroundHorizAccel;
+            player.xAccel = player.playerInAir ? Player.playerAirHorizAccel : player.playerGroundHorizAccel;
         }
         //Stop player if not pressing any of the keys
         if(!inputState.right && !inputState.left) {

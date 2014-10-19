@@ -2,6 +2,8 @@ package uk.co.tabish.game.pixelman.player;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import uk.co.tabish.game.pixelman.platform.DeadlyPlatform;
+import uk.co.tabish.game.pixelman.platform.IcePlatform;
 import uk.co.tabish.game.pixelman.platform.MovingPlatform;
 import uk.co.tabish.game.pixelman.platform.Platform;
 import uk.co.tabish.game.thing.Thing;
@@ -13,14 +15,14 @@ public class Player extends Thing {
     private static final int playerHeight = 16;
 
     //Player constants used by components
-    public static final float playerMaxXSpeed = 150f;
-    public static final float playerMaxYSpeed = 350f;
+    public static final float playerMaxXSpeed = 125f;
+    public static final float playerMaxYSpeed = 200f;
 
-    public static final float playerGroundHorizAccel = 1500f;
-    public static final float playerAirHorizAccel = 350f;
+    public static final float playerGroundHorizAccelNormal = 1500f;
+    public static final float playerAirHorizAccel = 100f;
 
     public static final float playerGroundFriction = 0.2f;
-    public static final float playerAirFriction = 0.07f;
+    public static final float playerAirFriction = 0.0f;
 
     public static final float playerGroundClampSpeed = 20f;
     public static final float playerAirClampSpeed = 0f;
@@ -43,6 +45,10 @@ public class Player extends Thing {
 
     public boolean canDoubleJump = true;
 
+    public boolean playerDead = false;
+
+    public float playerGroundHorizAccel = playerGroundHorizAccelNormal;
+
     //Components
     private PlayerPhysicsComponent physicsComponent;
     private PlayerInputComponent inputComponent;
@@ -64,6 +70,8 @@ public class Player extends Thing {
 
         //Move into collision component
         playerInAir = true;
+
+        System.out.println(xSpeed);
     }
 
     @Override
@@ -82,6 +90,19 @@ public class Player extends Thing {
                         ySpeed=thing.ySpeed;
                     }
                     x+=thing.xSpeed*PlayerPhysicsComponent.timeDelta;
+
+                    //Check for deadly platform
+                    if(thing instanceof DeadlyPlatform) {
+                        playerDied();
+                    }
+
+                    //Check for ice platform
+                    if(thing instanceof IcePlatform) {
+                        physicsComponent.setXFriction(IcePlatform.groundFriction);
+                        playerGroundHorizAccel = IcePlatform.horizAccel;
+                        physicsComponent.setXClampSpeed(IcePlatform.clampSpeed);
+                    }
+
                 } else {
                     //Platform above player, 'bounce' player of
                     ySpeed = thing.ySpeed+playerWallBounce;
@@ -94,15 +115,19 @@ public class Player extends Thing {
                 if(xVector*xSpeed<0f) {
                     //Player is moving into the platform
                     /*
-                        This is to stop the player moving horizontally across a platform, being pushed outwards horiz in
-                        that direction on the last 'step' and being stopped.
+                        This is to stop the scenario when the player is moving horizontally across a platform,
+                        and is then pushed outwards horiz in that direction on the last 'step' and being stopped.
                      */
                     xSpeed=0f;
                 }
 
                 if(ySpeed > 0f) {
                     //Player is sliding down a wall
-                    ySpeed *= playerWallSlidingFriction;
+
+                    if(!(thing instanceof IcePlatform)) {
+                        ySpeed *= playerWallSlidingFriction;
+                    }
+
                 }
             }
 
@@ -112,9 +137,13 @@ public class Player extends Thing {
             */
             if(Math.min(Math.abs(xVector),Math.abs(yVector))>playerDeathDistance) {
                 System.out.println("Player Died: "+xVector+ " ,"+yVector);
-                //TODO: Player death behaviour
+                playerDied();
             }
         }
+    }
+
+    private void playerDied() {
+        playerDead = true;
     }
 
     @Override
