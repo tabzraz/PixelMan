@@ -61,7 +61,7 @@ public class PlayerPhysicsComponent {
 
         //---
 
-        //Change constants/values if in the air
+        //Reset constants/values
         if(player.playerInAir) {
             this.setXFriction(Player.playerAirFriction);
             this.setXClampSpeed(Player.playerAirClampSpeed);
@@ -81,6 +81,9 @@ public class PlayerPhysicsComponent {
             //Reset horizAccel
             player.playerGroundHorizAccel = Player.playerGroundHorizAccelNormal;
         }
+
+        //To prevent infinite jump
+        player.playerInAir=true;
 
     }
 

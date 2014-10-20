@@ -17,7 +17,7 @@ public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
        - 1-way-up platforms
-       - Enemies
+       - Enemies (Ground, air and projectile)
        - Player Death
        - 'Level'
      */

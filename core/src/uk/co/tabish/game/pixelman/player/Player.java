@@ -67,11 +67,6 @@ public class Player extends Thing {
         inputComponent.handleInput(this);
 
         physicsComponent.moveThing(this);
-
-        //Move into collision component
-        playerInAir = true;
-
-        System.out.println(xSpeed);
     }
 
     @Override
