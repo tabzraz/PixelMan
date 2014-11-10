@@ -33,11 +33,13 @@ public class CollisionHandler {
             yVector = (stationary.y - moving.bounds().getHeight()) - moving.y;
         }
 
-        // > in order to favour y direction
-        if(Math.abs(xVector) < Math.abs(yVector)) {
-            moving.x+=xVector;
-        } else {
-            moving.y+=yVector;
+        if(stationary.solid) {
+            // > in order to favour y direction
+            if (Math.abs(xVector) < Math.abs(yVector)) {
+                moving.x += xVector;
+            } else {
+                moving.y += yVector;
+            }
         }
 
         moving.collided(stationary,xVector,yVector);

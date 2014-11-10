@@ -15,6 +15,8 @@ public class Thing {
     public float xAccel;
     public float yAccel;
 
+    public boolean solid = true;
+
     private float width;
     private float height;
 

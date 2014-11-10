@@ -5,10 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
 import uk.co.tabish.game.pixelman.level.Level;
-import uk.co.tabish.game.pixelman.platform.DeadlyPlatform;
-import uk.co.tabish.game.pixelman.platform.IcePlatform;
-import uk.co.tabish.game.pixelman.platform.MovingPlatform;
-import uk.co.tabish.game.pixelman.platform.Platform;
+import uk.co.tabish.game.pixelman.platform.*;
 import uk.co.tabish.game.pixelman.player.Player;
 import uk.co.tabish.game.thing.Thing;
 
@@ -59,7 +56,10 @@ public class GameScreen implements Screen {
         }
 
         IcePlatform i1 = new IcePlatform(200,260,200,10);
-        platforms.add(i1);
+        //platforms.add(i1);
+
+        OneWayPlatform o1 = new OneWayPlatform(50,240,100,10);
+        platforms.add(o1);
 
         camera.position.set(cameraWidth/2f,level.getHeight()-cameraHeight/2f, 0f);
     }

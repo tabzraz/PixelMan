@@ -11,8 +11,8 @@ import uk.co.tabish.game.thing.Thing;
 public class Player extends Thing {
 
     //Player constants
-    private static final int playerWidth = 10;
-    private static final int playerHeight = 16;
+    public static final int playerWidth = 10;
+    public static final int playerHeight = 16;
 
     //Player constants used by components
     public static final float playerMaxXSpeed = 125f;
@@ -52,6 +52,7 @@ public class Player extends Thing {
     //Components
     private PlayerPhysicsComponent physicsComponent;
     private PlayerInputComponent inputComponent;
+    private PlayerCollisionComponent collisionComponent;
 
     public Player(float x, float y) {
         super(x, y, playerWidth, playerHeight);
@@ -60,6 +61,8 @@ public class Player extends Thing {
         physicsComponent = new PlayerPhysicsComponent();
 
         inputComponent = new PlayerInputComponent();
+
+        collisionComponent = new PlayerCollisionComponent(physicsComponent);
     }
 
     @Override
@@ -72,72 +75,11 @@ public class Player extends Thing {
     @Override
     public void collided(Thing thing, float xVector, float yVector) {
 
-        //Todo: Move into a collision handling component
-        if(thing instanceof Platform) {
-            //Vertical collision
-            if(Math.abs(yVector)<Math.abs(xVector)) {
-                if(yVector < 0f) {
-                    //Platform is underneath player
-                    playerInAir = false;
-                    if(thing.ySpeed<=0f) {
-                        ySpeed=Math.min(ySpeed,thing.ySpeed);
-                    } else {
-                        ySpeed=thing.ySpeed;
-                    }
-                    x+=thing.xSpeed*PlayerPhysicsComponent.timeDelta;
+        collisionComponent.collided(thing,xVector,yVector,this);
 
-                    //Check for deadly platform
-                    if(thing instanceof DeadlyPlatform) {
-                        playerDied();
-                    }
-
-                    //Check for ice platform
-                    if(thing instanceof IcePlatform) {
-                        physicsComponent.setXFriction(IcePlatform.groundFriction);
-                        playerGroundHorizAccel = IcePlatform.horizAccel;
-                        physicsComponent.setXClampSpeed(IcePlatform.clampSpeed);
-                    }
-
-                } else {
-                    //Platform above player, 'bounce' player of
-                    ySpeed = thing.ySpeed+playerWallBounce;
-                }
-
-            }
-
-            //Horizontal collision
-            if(Math.abs(xVector)<Math.abs(yVector)) {
-                if(xVector*xSpeed<0f) {
-                    //Player is moving into the platform
-                    /*
-                        This is to stop the scenario when the player is moving horizontally across a platform,
-                        and is then pushed outwards horiz in that direction on the last 'step' and being stopped.
-                     */
-                    xSpeed=0f;
-                }
-
-                if(ySpeed > 0f) {
-                    //Player is sliding down a wall
-
-                    if(!(thing instanceof IcePlatform)) {
-                        ySpeed *= playerWallSlidingFriction;
-                    }
-
-                }
-            }
-
-            //Death check
-            /*
-                If the player got squished between platforms and was moved a "long way" they are now dead
-            */
-            if(Math.min(Math.abs(xVector),Math.abs(yVector))>playerDeathDistance) {
-                System.out.println("Player Died: "+xVector+ " ,"+yVector);
-                playerDied();
-            }
-        }
     }
 
-    private void playerDied() {
+    public void playerDied() {
         playerDead = true;
     }
 
