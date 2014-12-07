@@ -2,10 +2,6 @@ package uk.co.tabish.game.pixelman.player;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import uk.co.tabish.game.pixelman.platform.DeadlyPlatform;
-import uk.co.tabish.game.pixelman.platform.IcePlatform;
-import uk.co.tabish.game.pixelman.platform.MovingPlatform;
-import uk.co.tabish.game.pixelman.platform.Platform;
 import uk.co.tabish.game.thing.Thing;
 
 public class Player extends Thing {
@@ -27,7 +23,7 @@ public class Player extends Thing {
     public static final float playerGroundClampSpeed = 20f;
     public static final float playerAirClampSpeed = 0f;
 
-    public static final float playerJumpSpeed = -100f;
+    public static final float playerJumpSpeed = -80f;
 
     public static final float playerGravity = 280f;
     public static final float playerJumpingGravity = playerGravity * 0.6f;
@@ -37,6 +33,8 @@ public class Player extends Thing {
     public static final float playerWallBounce = 10f;
 
     public static final float playerDeathDistance = 4f;
+
+    public static final int playerInvincibleCount = 40;
 
     //Player variables shared by components
     public boolean playerInAir = false;
@@ -48,6 +46,13 @@ public class Player extends Thing {
     public boolean playerDead = false;
 
     public float playerGroundHorizAccel = playerGroundHorizAccelNormal;
+
+    //Private player values
+    private int playerLife = 3;
+
+    private int invincibleCounter = 0;
+
+    private boolean invincible = false;
 
     //Components
     private PlayerPhysicsComponent physicsComponent;
@@ -70,6 +75,14 @@ public class Player extends Thing {
         inputComponent.handleInput(this);
 
         physicsComponent.moveThing(this);
+
+        if(this.invincible) {
+            this.invincibleCounter++;
+            if(this.invincibleCounter > Player.playerInvincibleCount) {
+                invincible = false;
+                invincibleCounter=0;
+            }
+        }
     }
 
     @Override
@@ -83,9 +96,22 @@ public class Player extends Thing {
         playerDead = true;
     }
 
+    public void playerHit() {
+        if (!invincible) {
+            playerLife -= 1;
+            if (playerLife < 1) {
+                playerDied();
+            }
+            this.invincible = true;
+        }
+    }
+
     @Override
     public void draw(SpriteBatch batch) {
         batch.setColor(Color.GREEN);
+        if(invincible) {
+            batch.setColor(Color.MAGENTA);
+        }
         super.draw(batch);
     }
 

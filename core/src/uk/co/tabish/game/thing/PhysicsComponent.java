@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 
 public class PhysicsComponent {
 
-    private static final float timeDelta = 1/60f;
+    public static final float timeDelta = 1/60f;
 
     public void moveThing(Thing thing) {
 

@@ -4,8 +4,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
+import uk.co.tabish.game.pixelman.enemy.Enemy;
+import uk.co.tabish.game.pixelman.enemy.GroundEnemy;
+import uk.co.tabish.game.pixelman.enemy.Info;
 import uk.co.tabish.game.pixelman.level.Level;
-import uk.co.tabish.game.pixelman.platform.*;
+import uk.co.tabish.game.pixelman.platform.IcePlatform;
+import uk.co.tabish.game.pixelman.platform.OneWayPlatform;
+import uk.co.tabish.game.pixelman.platform.Platform;
 import uk.co.tabish.game.pixelman.player.Player;
 import uk.co.tabish.game.thing.Thing;
 
@@ -20,6 +25,9 @@ public class GameScreen implements Screen {
 
     //Platforms
     private List<Thing> platforms = new ArrayList<Thing>();
+
+    //Enemies
+    private List<Enemy> enemies = new ArrayList<Enemy>();
 
     //Private Camera
     private OrthographicCamera camera;
@@ -42,6 +50,7 @@ public class GameScreen implements Screen {
         //Reinit objects
         player = new Player(100,250);
         platforms = new ArrayList<Thing>();
+        enemies = new ArrayList<Enemy>();
 
         //TODO: Add level loading here
         Platform ground = new Platform(10,270,480,30);
@@ -59,7 +68,10 @@ public class GameScreen implements Screen {
         //platforms.add(i1);
 
         OneWayPlatform o1 = new OneWayPlatform(50,240,100,10);
-        platforms.add(o1);
+        //platforms.add(o1);
+
+        GroundEnemy g1 = new GroundEnemy(200,250);
+        enemies.add(g1);
 
         camera.position.set(cameraWidth/2f,level.getHeight()-cameraHeight/2f, 0f);
     }
@@ -79,10 +91,38 @@ public class GameScreen implements Screen {
             thing.update();
         }
 
-        //Handle collisions
+        //Construct new info object for enemies
+        Info info = new Info();
+        info.player = player;
+
+        //Update enemies
+        for(Enemy enemy : enemies) {
+            enemy.receiveInfo(info);
+            enemy.update();
+        }
+
+        /* TODO: Sort out collisions*/
+
+        //Handle collisions between the player and platforms
         for(Thing thing : platforms) {
             if(CollisionHandler.isColliding(player,thing)) {
                 CollisionHandler.handleCollision(player,thing);
+            }
+        }
+
+        //Handle collisions between the enemies and platforms
+        for(Thing enemy : enemies) {
+            for(Thing platform : platforms) {
+                if(CollisionHandler.isColliding(enemy,platform)) {
+                    CollisionHandler.handleCollision(enemy, platform);
+                }
+            }
+        }
+
+        //Handle collisions between the player and enemies
+        for(Thing enemy : enemies) {
+            if(CollisionHandler.isColliding(player,enemy)) {
+                CollisionHandler.handleCollision(player,enemy);
             }
         }
 
@@ -134,6 +174,11 @@ public class GameScreen implements Screen {
 
         //Draw platforms
         for(Thing thing : platforms) {
+            thing.draw(batch);
+        }
+
+        //Draw enemies
+        for(Thing thing : enemies) {
             thing.draw(batch);
         }
 

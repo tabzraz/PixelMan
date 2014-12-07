@@ -1,25 +1,17 @@
 package uk.co.tabish.game.pixelman;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.TimeUtils;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.TwoDimensionalGame;
-
-import java.awt.*;
 
 public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
-       - 1-way-up platforms
        - Enemies (Ground, air and projectile)
        - Player Death
        - 'Level'
+       - Quad tree for collisions
      */
 
     //Screen constants

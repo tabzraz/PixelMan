@@ -1,5 +1,6 @@
 package uk.co.tabish.game.pixelman.player;
 
+import uk.co.tabish.game.pixelman.enemy.Enemy;
 import uk.co.tabish.game.pixelman.platform.*;
 import uk.co.tabish.game.thing.Thing;
 
@@ -29,7 +30,15 @@ public class PlayerCollisionComponent {
             this.collidedWithOneWayPlatform((OneWayPlatform)thing,xVector,yVector,player);
         } else if(thing instanceof Platform) {
             this.collidedWithPlatform((Platform) thing, xVector, yVector, player);
+        } else if(thing instanceof Enemy) {
+            this.collidedWithEnemy((Enemy) thing, xVector, yVector,player);
         }
+
+    }
+
+    public void collidedWithEnemy(Enemy enemy, float xVector, float yVector, Player player) {
+
+        player.playerHit();
 
     }
 
