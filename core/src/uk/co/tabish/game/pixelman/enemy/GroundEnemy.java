@@ -7,16 +7,16 @@ import uk.co.tabish.game.thing.Thing;
  */
 public class GroundEnemy extends Enemy {
 
-    private static final int width = 10;
-    private static final int height = 16;
-
+    //TODO: Make this a template for ground based enemies
     private static final float walkSpeed = 30f;
 
     private static final float bufferDist = 20f;
 
+    public static final int actingDistance = 200;
+
     GroundEnemyCollisionComponent collisionComponent;
 
-    public GroundEnemy(int x, int y) {
+    public GroundEnemy(int x, int y, int width, int height) {
         super(x,y,width,height);
 
         //Set gravity
@@ -32,10 +32,15 @@ public class GroundEnemy extends Enemy {
 
         //Ground AI
 
-        if(info().player.x - this.x < -bufferDist) {
-            this.xSpeed = -walkSpeed;
-        } else if(info().player.x -this.x > bufferDist) {
-            this.xSpeed = walkSpeed;
+        if(Math.abs(info().player.x - this.x) < actingDistance) {
+            if (info().player.x - this.x < -bufferDist) {
+                this.xSpeed = -walkSpeed;
+            } else if (info().player.x - this.x > bufferDist) {
+                this.xSpeed = walkSpeed;
+            }
+        } else {
+            //Idle
+            xSpeed=0f;
         }
 
         //---

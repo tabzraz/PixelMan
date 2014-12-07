@@ -15,6 +15,8 @@ public class Enemy extends Thing {
     public static final float gravity = 250f;
 
     private Info info;
+    
+    public boolean dead = false;
 
     public Enemy(int x, int y, int width, int height) {
         super(x,y,width,height);

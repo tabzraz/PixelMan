@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
+import uk.co.tabish.game.pixelman.enemy.Cannon;
 import uk.co.tabish.game.pixelman.enemy.Enemy;
-import uk.co.tabish.game.pixelman.enemy.GroundEnemy;
 import uk.co.tabish.game.pixelman.enemy.Info;
 import uk.co.tabish.game.pixelman.level.Level;
 import uk.co.tabish.game.pixelman.platform.IcePlatform;
@@ -28,6 +28,7 @@ public class GameScreen implements Screen {
 
     //Enemies
     private List<Enemy> enemies = new ArrayList<Enemy>();
+    private List<Enemy> enemiesToAdd = new ArrayList<Enemy>();
 
     //Private Camera
     private OrthographicCamera camera;
@@ -65,12 +66,12 @@ public class GameScreen implements Screen {
         }
 
         IcePlatform i1 = new IcePlatform(200,260,200,10);
-        //platforms.add(i1);
+        platforms.add(i1);
 
         OneWayPlatform o1 = new OneWayPlatform(50,240,100,10);
         //platforms.add(o1);
 
-        GroundEnemy g1 = new GroundEnemy(200,250);
+        Cannon g1 = new Cannon(200,250,enemiesToAdd);
         enemies.add(g1);
 
         camera.position.set(cameraWidth/2f,level.getHeight()-cameraHeight/2f, 0f);
@@ -91,14 +92,23 @@ public class GameScreen implements Screen {
             thing.update();
         }
 
+        //Add any enemies that were spawned
+        enemies.addAll(enemiesToAdd);
+        enemiesToAdd.clear();
+
         //Construct new info object for enemies
         Info info = new Info();
         info.player = player;
 
         //Update enemies
-        for(Enemy enemy : enemies) {
+        for(int i=0; i<enemies.size();i++) {
+            Enemy enemy = enemies.get(i);
             enemy.receiveInfo(info);
             enemy.update();
+            if(enemy.dead) {
+                enemies.remove(i);
+                i--;
+            }
         }
 
         /* TODO: Sort out collisions*/

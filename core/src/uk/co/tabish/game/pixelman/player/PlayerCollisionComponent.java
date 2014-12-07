@@ -1,6 +1,7 @@
 package uk.co.tabish.game.pixelman.player;
 
 import uk.co.tabish.game.pixelman.enemy.Enemy;
+import uk.co.tabish.game.pixelman.enemy.GroundEnemy;
 import uk.co.tabish.game.pixelman.platform.*;
 import uk.co.tabish.game.thing.Thing;
 
@@ -17,8 +18,7 @@ public class PlayerCollisionComponent {
     /*
         Everything the player collides with is sent here.
         Things that require action on collision have their own methods.
-        Could use dynamic dispatch here, but I prefer all collision code to be here
-        as opposed to in every collision worthy object.
+        TODO: Move collision code into other objects, so that enemies, etc can decide how the player collides.
      */
     public void collided(Thing thing, float xVector, float yVector, Player player) {
 
@@ -30,15 +30,30 @@ public class PlayerCollisionComponent {
             this.collidedWithOneWayPlatform((OneWayPlatform)thing,xVector,yVector,player);
         } else if(thing instanceof Platform) {
             this.collidedWithPlatform((Platform) thing, xVector, yVector, player);
+        } else if(thing instanceof GroundEnemy) {
+            this.collidedWithGroundEnemy((GroundEnemy) thing, xVector, yVector, player);
         } else if(thing instanceof Enemy) {
-            this.collidedWithEnemy((Enemy) thing, xVector, yVector,player);
+            this.collidedWithEnemy((Enemy) thing, xVector,yVector,player);
         }
 
     }
 
+    public void collidedWithGroundEnemy(GroundEnemy enemy, float xVector, float yVector, Player player) {
+        if(Math.abs(yVector)<Math.abs(xVector) && yVector < 0f) {
+            //Vertical collision and player was above enemy when collision occured
+            enemy.dead = true;
+
+        } else {
+            this.collidedWithEnemy(enemy,xVector,yVector,player);
+        }
+    }
+
+
     public void collidedWithEnemy(Enemy enemy, float xVector, float yVector, Player player) {
 
         player.playerHit();
+
+        enemy.collided(player, -xVector, -yVector);
 
     }
 
