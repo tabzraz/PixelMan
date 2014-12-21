@@ -8,16 +8,20 @@ import uk.co.tabish.game.thing.Thing;
 public class GroundEnemy extends Enemy {
 
     //TODO: Make this a template for ground based enemies
-    private static final float walkSpeed = 30f;
+    private float walkSpeed = 30f;
 
-    private static final float bufferDist = 20f;
+    private int bufferDist = 20;
 
-    public static final int actingDistance = 200;
+    private int actingDistance = 200;
 
     GroundEnemyCollisionComponent collisionComponent;
 
-    public GroundEnemy(int x, int y, int width, int height) {
+    public GroundEnemy(int x, int y, int width, int height, int activeDist, float walk, int buffer) {
         super(x,y,width,height);
+
+        this.actingDistance = activeDist;
+        this.bufferDist = buffer;
+        this.walkSpeed = walk;
 
         //Set gravity
         this.yAccel = Enemy.gravity;
@@ -32,7 +36,7 @@ public class GroundEnemy extends Enemy {
 
         //Ground AI
 
-        if(Math.abs(info().player.x - this.x) < actingDistance) {
+        if(this.active()) {
             if (info().player.x - this.x < -bufferDist) {
                 this.xSpeed = -walkSpeed;
             } else if (info().player.x - this.x > bufferDist) {
@@ -52,6 +56,11 @@ public class GroundEnemy extends Enemy {
 
         collisionComponent.collided(thing,xVector,yVector,this);
 
+    }
+
+    @Override
+    protected boolean active() {
+        return (Math.abs(info().player.x - this.x) < actingDistance);
     }
 
 }

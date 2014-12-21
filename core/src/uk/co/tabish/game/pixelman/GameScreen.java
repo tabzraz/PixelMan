@@ -19,7 +19,7 @@ import java.util.List;
 
 public class GameScreen implements Screen {
 
-    private Level level = new Level();
+    private Level level = new Level(500,300);
 
     private Player player;
 
@@ -78,6 +78,7 @@ public class GameScreen implements Screen {
     }
 
     private void playerDied() {
+        //TODO: Player death animation
         setupLevel();
     }
 

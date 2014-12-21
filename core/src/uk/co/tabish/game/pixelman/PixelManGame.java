@@ -8,10 +8,12 @@ import uk.co.tabish.game.TwoDimensionalGame;
 public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
-       - Enemies (Ground, air and projectile)
-       - Player Death
        - 'Level'
        - Quad tree for collisions
+       - Graphics
+       - Sound
+       - Particle Effects
+       - Android touch controls
      */
 
     //Screen constants

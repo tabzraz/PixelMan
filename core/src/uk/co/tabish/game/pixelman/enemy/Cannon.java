@@ -10,6 +10,11 @@ public class Cannon extends GroundEnemy {
     private static final int width = 10;
     private static final int height = 10;
 
+    private static final float walkSpeed = 20f;
+    private static final int activeDist = 400;
+    private static final int bufferDist = 10;
+
+    //Projectile variables
     private List<Enemy> projectiles;
 
     private int counter = 0;
@@ -17,16 +22,17 @@ public class Cannon extends GroundEnemy {
     private int firingCount = 60;
 
     private float projectileSpeed = 100;
+    //---
 
     public Cannon(int x, int y, List<Enemy> projectiles) {
-        super(x,y,width,height);
+        super(x,y,width,height,activeDist,walkSpeed,bufferDist);
         this.projectiles = projectiles;
     }
 
     public void update() {
         super.update();
 
-        if(Math.abs(info().player.x - this.x) < GroundEnemy.actingDistance) {
+        if(this.active()) {
             counter++;
             if(counter>firingCount) {
                 counter=0;

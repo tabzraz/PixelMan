@@ -1,0 +1,16 @@
+//Platforms
+Platform - x,y,width,height
+DeadlyPlatform
+Ice
+Moving - x,y,width,height,xs,ys,hdist,vdist
+Oneway
+//Enemies
+Cannon - x,y
+Charger
+Skeleton
+
+-----------------
+LEVEL START
+Platform 0 1000 1000 30
+Cannon 600 980
+LEVEL END

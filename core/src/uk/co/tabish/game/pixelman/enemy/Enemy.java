@@ -36,6 +36,10 @@ public class Enemy extends Thing {
         return info;
     }
 
+    protected boolean active() {
+        return true;
+    }
+
     @Override
     public void draw(SpriteBatch batch) {
         batch.setColor(Color.CYAN);
