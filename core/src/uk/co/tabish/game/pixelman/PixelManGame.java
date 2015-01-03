@@ -8,8 +8,6 @@ import uk.co.tabish.game.TwoDimensionalGame;
 public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
-       - 'Level'
-       - Quad tree for collisions
        - Graphics
        - Sound
        - Particle Effects

@@ -7,8 +7,6 @@ import uk.co.tabish.game.thing.Thing;
 
 public class PlayerCollisionComponent {
 
-    //TODO: Fix the instanceof/casting stuff to use polymorphism/dynamic dispatch/something else.
-
     PlayerPhysicsComponent physicsComponent;
 
     public PlayerCollisionComponent(PlayerPhysicsComponent physics) {

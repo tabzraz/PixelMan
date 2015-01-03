@@ -55,31 +55,6 @@ public class GameScreen implements Screen {
         enemies = new ArrayList<Enemy>();
         enemiesToAdd = new ArrayList<Enemy>();
 
-        /*
-        //TODO: Add level loading here
-        //Temp level loading
-        Platform ground = new Platform(10,270,480,30);
-
-        platforms.add(ground);
-
-        for(int i=4; i<10;i++) {
-            Platform p = new Platform(i*50,200,30,10);
-            platforms.add(p);
-            Platform p1 = new Platform(400-i*50,120-i*10,30,10);
-            //platforms.add(p1);
-        }
-
-        IcePlatform i1 = new IcePlatform(200,260,200,10);
-        platforms.add(i1);
-
-        OneWayPlatform o1 = new OneWayPlatform(50,240,100,10);
-        //platforms.add(o1);
-
-        Cannon g1 = new Cannon(200,250,enemiesToAdd);
-        enemies.add(g1);
-        //End temp level loading
-        */
-
         //Get level
         level = LevelReader.getLevel("level1");
 
@@ -126,8 +101,6 @@ public class GameScreen implements Screen {
                 i--;
             }
         }
-
-        /* TODO: Sort out collisions to use the quad tree*/
 
         //Handle collisions between the player and platforms
         for(Thing thing : platforms) {
