@@ -8,6 +8,7 @@ import uk.co.tabish.game.pixelman.enemy.Cannon;
 import uk.co.tabish.game.pixelman.enemy.Enemy;
 import uk.co.tabish.game.pixelman.enemy.Info;
 import uk.co.tabish.game.pixelman.level.Level;
+import uk.co.tabish.game.pixelman.level.LevelReader;
 import uk.co.tabish.game.pixelman.platform.IcePlatform;
 import uk.co.tabish.game.pixelman.platform.OneWayPlatform;
 import uk.co.tabish.game.pixelman.platform.Platform;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class GameScreen implements Screen {
 
-    private Level level = new Level(500,300);
+    private Level level;
 
     private Player player;
 
@@ -52,8 +53,11 @@ public class GameScreen implements Screen {
         player = new Player(100,250);
         platforms = new ArrayList<Thing>();
         enemies = new ArrayList<Enemy>();
+        enemiesToAdd = new ArrayList<Enemy>();
 
+        /*
         //TODO: Add level loading here
+        //Temp level loading
         Platform ground = new Platform(10,270,480,30);
 
         platforms.add(ground);
@@ -73,6 +77,17 @@ public class GameScreen implements Screen {
 
         Cannon g1 = new Cannon(200,250,enemiesToAdd);
         enemies.add(g1);
+        //End temp level loading
+        */
+
+        //Get level
+        level = LevelReader.getLevel("level1");
+
+        //Setup level
+        player = level.player;
+        platforms = level.platforms;
+        enemies = level.enemies;
+        enemiesToAdd = level.enemiesToAdd;
 
         camera.position.set(cameraWidth/2f,level.getHeight()-cameraHeight/2f, 0f);
     }
@@ -112,7 +127,7 @@ public class GameScreen implements Screen {
             }
         }
 
-        /* TODO: Sort out collisions*/
+        /* TODO: Sort out collisions to use the quad tree*/
 
         //Handle collisions between the player and platforms
         for(Thing thing : platforms) {

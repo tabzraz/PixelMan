@@ -7,7 +7,6 @@ import uk.co.tabish.game.thing.Thing;
  */
 public class GroundEnemy extends Enemy {
 
-    //TODO: Make this a template for ground based enemies
     private float walkSpeed = 30f;
 
     private int bufferDist = 20;

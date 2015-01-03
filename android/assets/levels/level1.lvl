@@ -1,16 +1,31 @@
-//Platforms
+//Platforms (prefixed with Platform)
 Platform - x,y,width,height
-DeadlyPlatform
+Deadly
 Ice
 Moving - x,y,width,height,xs,ys,hdist,vdist
 Oneway
-//Enemies
+
+//Enemies (prefixed with Enemy)
 Cannon - x,y
 Charger
 Skeleton
 
------------------
+//Player
+Player - x,y
+
+//Level
+Level width,height
+
+//Level orientation
++-------->
+|
+|
+v
+-----------
+
 LEVEL START
-Platform 0 1000 1000 30
-Cannon 600 980
+Level 500 200
+Platform Platform 0 170 500 30
+Enemy Cannon 200 160
+Player 100 150
 LEVEL END

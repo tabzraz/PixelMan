@@ -37,7 +37,6 @@ public class LoadingScreen implements Screen {
 
         //--Level--
 
-
     }
 
     @Override

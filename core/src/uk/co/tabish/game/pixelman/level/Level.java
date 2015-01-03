@@ -21,12 +21,16 @@ public class Level {
     //Enemies
     public List<Enemy> enemies = new ArrayList<Enemy>();
 
-    public Level(int w, int h, List<Thing> plats, List<Enemy> enems, Player play) {
+    //Enemies to add
+    public List<Enemy> enemiesToAdd = new ArrayList<Enemy>();
+
+    public Level(int w, int h, List<Thing> plats, List<Enemy> enems, List<Enemy> enemsToAdd, Player play) {
         width = w;
         height = h;
         platforms = plats;
         enemies = enems;
         player = play;
+        enemiesToAdd = enemsToAdd;
     }
 
     public int getWidth() {

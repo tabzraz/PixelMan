@@ -19,7 +19,7 @@ public class Cannon extends GroundEnemy {
 
     private int counter = 0;
 
-    private int firingCount = 60;
+    private int firingCount = 100;
 
     private float projectileSpeed = 100;
     //---
