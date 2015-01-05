@@ -9,9 +9,9 @@ public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
        - Graphics
-       - Sound
        - Particle Effects
        - Android touch controls
+       - Sound
      */
     /* Graphics required:
         - Player
@@ -20,13 +20,7 @@ public class PixelManGame extends TwoDimensionalGame {
             - Charger
             - Skeleton
             - Bullet
-        - Platforms
-            - Plain grass
-            - Fire
-            - Ice
-            - Oneway
-            - Moving
-        - Background
+        - Background stuff
      */
 
     //Screen constants
