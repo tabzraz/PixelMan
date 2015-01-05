@@ -13,6 +13,21 @@ public class PixelManGame extends TwoDimensionalGame {
        - Particle Effects
        - Android touch controls
      */
+    /* Graphics required:
+        - Player
+        - Enemies
+            - Cannon
+            - Charger
+            - Skeleton
+            - Bullet
+        - Platforms
+            - Plain grass
+            - Fire
+            - Ice
+            - Oneway
+            - Moving
+        - Background
+     */
 
     //Screen constants
     public static final int LOADING_SCREEN = 3;

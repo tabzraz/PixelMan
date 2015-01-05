@@ -33,6 +33,27 @@ public class LoadingScreen implements Screen {
 
         //---Textures---
 
+        //Platforms
+        //Plain
+        manager.load("platforms/PlainBack.png", Texture.class);
+        manager.load("platforms/PlainTop.png", Texture.class);
+        //Ice
+        manager.load("platforms/IceBack.png", Texture.class);
+        manager.load("platforms/IceTop.png", Texture.class);
+        //Moving
+        manager.load("platforms/MovingBack.png", Texture.class);
+        manager.load("platforms/MovingTop.png", Texture.class);
+        //Oneway
+        manager.load("platforms/OnewayBack.png", Texture.class);
+        manager.load("platforms/OnewayTop.png", Texture.class);
+        //Fire
+        manager.load("platforms/FireBack.png", Texture.class);
+        for(int i=1;i<=5;i++) {
+            manager.load("platforms/FireTop"+i+".png", Texture.class);
+        }
+
+        //---
+
         //--Sound--
 
         //--Level--

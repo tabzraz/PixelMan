@@ -32,6 +32,7 @@ public class Cannon extends GroundEnemy {
     public void update() {
         super.update();
 
+        //TODO: Move this into an ai component
         if(this.active()) {
             counter++;
             if(counter>firingCount) {

@@ -25,7 +25,10 @@ v
 
 LEVEL START
 Level 500 200
-Platform Platform 0 170 500 30
-Enemy Cannon 200 160
+Platform Platform 10 170 400 20
+Platform Ice 110 140 30 20
+Platform Oneway 210 140 30 20
+Platform Moving 310 140 30 20 0 0 0 0
+-Enemy Cannon 200 160
 Player 100 150
 LEVEL END

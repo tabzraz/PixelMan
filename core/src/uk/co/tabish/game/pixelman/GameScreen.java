@@ -1,6 +1,9 @@
 package uk.co.tabish.game.pixelman;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
@@ -33,8 +36,8 @@ public class GameScreen implements Screen {
 
     //Private Camera
     private OrthographicCamera camera;
-    private int cameraHeight = 200;
-    private int cameraWidth = 200;
+    private float cameraHeight = 150;
+    private float cameraWidth = 200;
 
     @Override
     public void init() {
@@ -170,6 +173,10 @@ public class GameScreen implements Screen {
 
         //Use internal camera
         batch.setProjectionMatrix(camera.combined);
+
+        //Background
+        batch.setColor(Color.WHITE);
+        batch.draw(PixelManGame.manager().get("rect.png", Texture.class), camera.position.x-cameraWidth/2f,camera.position.y-cameraHeight/2f,cameraWidth,cameraHeight);
 
         //Draw platforms
         for(Thing thing : platforms) {

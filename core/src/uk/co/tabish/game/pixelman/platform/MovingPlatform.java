@@ -1,7 +1,9 @@
 package uk.co.tabish.game.pixelman.platform;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import uk.co.tabish.game.pixelman.PixelManGame;
 import uk.co.tabish.game.thing.PhysicsComponent;
 import uk.co.tabish.game.thing.Thing;
 
@@ -23,6 +25,8 @@ public class MovingPlatform extends Platform {
         this.vertDistance=vDist;
         this.horizStart=x;
         this.vertStart=y;
+        back= PixelManGame.manager().get("platforms/MovingBack.png", Texture.class);
+        top = PixelManGame.manager().get("platforms/MovingTop.png", Texture.class);
     }
 
     @Override
