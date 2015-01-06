@@ -26,9 +26,6 @@ v
 LEVEL START
 Level 500 200
 Platform Platform 10 170 400 20
-Platform Oneway 210 110 30 20
-Platform Deadly 110 110 28 20
-Platform Moving 310 110 30 20 0 0 0 0
--Enemy Cannon 200 160
+Enemy Skeleton 200 160
 Player 100 150
 LEVEL END

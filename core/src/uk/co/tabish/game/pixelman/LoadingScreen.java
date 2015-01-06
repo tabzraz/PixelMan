@@ -52,6 +52,12 @@ public class LoadingScreen implements Screen {
             manager.load("platforms/FireTop"+i+".png", Texture.class);
         }
 
+        //Enemies
+        //Skeleton
+        for(int i=1;i<=4;i++) {
+            manager.load("enemies/skeleton"+i+".png", Texture.class);
+        }
+
         //---
 
         //--Sound--
