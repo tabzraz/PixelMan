@@ -1,7 +1,9 @@
 package uk.co.tabish.game.pixelman.enemy;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import uk.co.tabish.game.thing.OnetimeAnimationComponent;
 import uk.co.tabish.game.thing.PhysicsComponent;
 import uk.co.tabish.game.thing.Thing;
 
@@ -17,6 +19,7 @@ public class Enemy extends Thing {
     private Info info;
     
     public boolean dead = false;
+    public OnetimeAnimationComponent deathAnim;
 
     public Enemy(int x, int y, int width, int height) {
         super(x,y,width,height);

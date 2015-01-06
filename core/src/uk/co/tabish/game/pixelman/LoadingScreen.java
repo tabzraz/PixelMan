@@ -57,6 +57,9 @@ public class LoadingScreen implements Screen {
         for(int i=1;i<=4;i++) {
             manager.load("enemies/skeleton"+i+".png", Texture.class);
         }
+        for(int i=1;i<=11;i++) {
+            manager.load("enemies/skeletondeath"+i+".png", Texture.class);
+        }
 
         //---
 

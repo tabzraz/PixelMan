@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
+import uk.co.tabish.game.pixelman.effects.EffectThing;
 import uk.co.tabish.game.pixelman.enemy.Cannon;
 import uk.co.tabish.game.pixelman.enemy.Enemy;
 import uk.co.tabish.game.pixelman.enemy.Info;
@@ -16,6 +17,7 @@ import uk.co.tabish.game.pixelman.platform.IcePlatform;
 import uk.co.tabish.game.pixelman.platform.OneWayPlatform;
 import uk.co.tabish.game.pixelman.platform.Platform;
 import uk.co.tabish.game.pixelman.player.Player;
+import uk.co.tabish.game.thing.OnetimeAnimationComponent;
 import uk.co.tabish.game.thing.Thing;
 
 import java.util.ArrayList;
@@ -33,6 +35,9 @@ public class GameScreen implements Screen {
     //Enemies
     private List<Enemy> enemies = new ArrayList<Enemy>();
     private List<Enemy> enemiesToAdd = new ArrayList<Enemy>();
+
+    //Effects/Death animations
+    private List<EffectThing> effects = new ArrayList<EffectThing>();
 
     //Private Camera
     private OrthographicCamera camera;
@@ -100,7 +105,18 @@ public class GameScreen implements Screen {
             enemy.receiveInfo(info);
             enemy.update();
             if(enemy.dead) {
+                //Remove enemy from the list
                 enemies.remove(i);
+                i--;
+                //Add its death animation to the list to be shown
+                effects.add(new EffectThing(enemy.x,enemy.y,enemy.deathAnim));
+            }
+        }
+
+        //Check if any effects need to be removed from the list
+        for(int i=0;i<effects.size();i++) {
+            if(effects.get(i).isFinished()) {
+                effects.remove(i);
                 i--;
             }
         }
@@ -175,7 +191,7 @@ public class GameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);
 
         //Background
-        batch.setColor(Color.WHITE);
+        batch.setColor(Color.BLACK);
         batch.draw(PixelManGame.manager().get("rect.png", Texture.class), camera.position.x-cameraWidth/2f,camera.position.y-cameraHeight/2f,cameraWidth,cameraHeight);
 
         //Draw platforms
@@ -190,6 +206,12 @@ public class GameScreen implements Screen {
 
         //Draw player
         player.draw(batch);
+
+
+        //Draw effects
+        for(EffectThing effectThing : effects) {
+            effectThing.draw(batch);
+        }
     }
 
     @Override

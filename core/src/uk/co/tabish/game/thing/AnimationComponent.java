@@ -6,7 +6,7 @@ public class AnimationComponent {
 
     private int framesPerImage = 1;
     private Texture[] images;
-    private int count;
+    private int count = -1;
     private int index;
 
     public AnimationComponent(Texture[] images, int framesPerImage) {

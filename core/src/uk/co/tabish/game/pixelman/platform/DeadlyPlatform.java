@@ -8,8 +8,8 @@ import uk.co.tabish.game.thing.AnimationComponent;
 
 public class DeadlyPlatform extends Platform {
 
-    protected Texture fire = PixelManGame.manager().get("platforms/FireBack.png", Texture.class);;
-    protected Texture[] topFire = new Texture[5];
+    private Texture fire = PixelManGame.manager().get("platforms/FireBack.png", Texture.class);
+    private Texture[] topFire = new Texture[5];
     private Texture border = PixelManGame.manager().get("rect.png");
 
     AnimationComponent lava;

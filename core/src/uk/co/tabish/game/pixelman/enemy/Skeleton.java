@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.pixelman.PixelManGame;
 import uk.co.tabish.game.thing.AnimationComponent;
+import uk.co.tabish.game.thing.OnetimeAnimationComponent;
 
 /**
  * Created by Tabz on 07/12/2014.
@@ -14,7 +15,7 @@ public class Skeleton extends GroundEnemy{
     private static final int width = 8;
     private static final int height = 12;
 
-    private static final float walkSpeed = 30f;
+    private static final float walkSpeed = 15f;
 
     private static final int bufferDist = 10;
 
@@ -25,6 +26,7 @@ public class Skeleton extends GroundEnemy{
     public Skeleton(int x, int y) {
         super(x, y, width, height, activationDistance, walkSpeed, bufferDist);
 
+        //Walking animation
         Texture[] skeletonT = new Texture[7];
 
         for(int i=1;i<=4;i++) {
@@ -34,8 +36,16 @@ public class Skeleton extends GroundEnemy{
             }
         }
 
-        skeleton.setWalking(skeletonT,8);
+        skeleton.setWalking(skeletonT,6);
         skeleton.setStill(skeletonT[0]);
+
+        //Death animation
+        Texture[] death = new Texture[11];
+        for(int i=1;i<=11;i++) {
+            death[i-1] = PixelManGame.manager().get("enemies/skeletondeath"+i+".png", Texture.class);
+        }
+        deathAnim = new OnetimeAnimationComponent(death,8);
+
     }
 
     @Override
