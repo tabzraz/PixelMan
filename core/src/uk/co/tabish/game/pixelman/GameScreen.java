@@ -191,7 +191,7 @@ public class GameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);
 
         //Background
-        batch.setColor(Color.BLACK);
+        batch.setColor(99f/255f,155f/255f,255f/255f,1f);
         batch.draw(PixelManGame.manager().get("rect.png", Texture.class), camera.position.x-cameraWidth/2f,camera.position.y-cameraHeight/2f,cameraWidth,cameraHeight);
 
         //Draw platforms

@@ -18,7 +18,6 @@ public class PixelManGame extends TwoDimensionalGame {
         - Enemies
             - Cannon
             - Charger
-            - Skeleton
             - Bullet
         - Background stuff
      */

@@ -12,7 +12,7 @@ public class EnemyAnimationComponent {
     //They can also face left or right
 
     private AnimationComponent walking;
-    private Texture still;
+    private AnimationComponent still;
 
     boolean facingLeft = true;
 
@@ -20,8 +20,8 @@ public class EnemyAnimationComponent {
         walking = new AnimationComponent(texture, framesPerImage);
     }
 
-    public void setStill(Texture still) {
-        this.still = still;
+    public void setStill(Texture[] texture, int framesPerImage) {
+        still = new AnimationComponent(texture, framesPerImage);
     }
 
     public void drawTexture(SpriteBatch batch, Enemy enemy, int xOffset, int yOffset) {
@@ -37,7 +37,7 @@ public class EnemyAnimationComponent {
         if(enemy.xSpeed != 0) {
             toDraw = walking.getTexture();
         } else {
-            toDraw = still;
+            toDraw = still.getTexture();
         }
 
         batch.setColor(Color.WHITE);

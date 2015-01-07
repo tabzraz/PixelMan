@@ -27,17 +27,25 @@ public class Skeleton extends GroundEnemy{
         super(x, y, width, height, activationDistance, walkSpeed, bufferDist);
 
         //Walking animation
-        Texture[] skeletonT = new Texture[7];
+        Texture[] skeletonWalk = new Texture[7];
 
         for(int i=1;i<=4;i++) {
-            skeletonT[i-1] = PixelManGame.manager().get("enemies/skeleton" + i + ".png", Texture.class);
+            skeletonWalk[i-1] = PixelManGame.manager().get("enemies/skeleton" + i + ".png", Texture.class);
             if(i!=1) {
-                skeletonT[7-(i-1)] = PixelManGame.manager().get("enemies/skeleton" + i + ".png", Texture.class);
+                skeletonWalk[7-(i-1)] = PixelManGame.manager().get("enemies/skeleton" + i + ".png", Texture.class);
             }
         }
 
-        skeleton.setWalking(skeletonT,6);
-        skeleton.setStill(skeletonT[0]);
+        skeleton.setWalking(skeletonWalk,6);
+
+        //Still animation
+        Texture[] skeletonStill = new Texture[2];
+
+        for(int i=1;i<=2;i++) {
+            skeletonStill[i-1] = PixelManGame.manager().get("enemies/skeletonstill"+i+".png", Texture.class);
+        }
+
+        skeleton.setStill(skeletonStill,25);
 
         //Death animation
         Texture[] death = new Texture[11];

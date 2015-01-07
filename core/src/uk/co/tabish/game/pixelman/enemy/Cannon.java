@@ -1,5 +1,10 @@
 package uk.co.tabish.game.pixelman.enemy;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import uk.co.tabish.game.pixelman.PixelManGame;
+import uk.co.tabish.game.thing.OnetimeAnimationComponent;
+
 import java.util.List;
 
 /**
@@ -10,7 +15,7 @@ public class Cannon extends GroundEnemy {
     private static final int width = 10;
     private static final int height = 10;
 
-    private static final float walkSpeed = 20f;
+    private static final float walkSpeed = 30f;
     private static final int activeDist = 400;
     private static final int bufferDist = 10;
 
@@ -24,9 +29,41 @@ public class Cannon extends GroundEnemy {
     private float projectileSpeed = 100;
     //---
 
+    EnemyAnimationComponent cannon = new EnemyAnimationComponent();
+
     public Cannon(int x, int y, List<Enemy> projectiles) {
         super(x,y,width,height,activeDist,walkSpeed,bufferDist);
         this.projectiles = projectiles;
+
+        //Animations
+        //Still
+        Texture[] cannonStill = new Texture[3];
+
+        for(int i=1;i<=3;i++) {
+            cannonStill[i-1] = PixelManGame.manager().get("enemies/cannonstill"+i+".png", Texture.class);
+        }
+
+        cannon.setStill(cannonStill,10);
+
+        //Walking
+        Texture[] cannonWalk = new Texture[3];
+
+        for(int i=1;i<=3;i++) {
+            cannonWalk[i-1] = PixelManGame.manager().get("enemies/cannon"+i+".png", Texture.class);
+        }
+
+        cannon.setWalking(cannonWalk, 10);
+
+        //Death
+        Texture[] cannonDeath = new Texture[6];
+
+        for(int i=1;i<=6;i++) {
+            cannonDeath[i-1] = PixelManGame.manager().get("enemies/cannondeath"+i+".png", Texture.class);
+        }
+
+        deathAnim = new OnetimeAnimationComponent(cannonDeath,10);
+
+
     }
 
     public void update() {
@@ -46,5 +83,10 @@ public class Cannon extends GroundEnemy {
                 projectiles.add(p);
             }
         }
+    }
+
+    @Override
+    public void draw(SpriteBatch batch) {
+        cannon.drawTexture(batch,this,-2,-4);
     }
 }
