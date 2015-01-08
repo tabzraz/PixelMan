@@ -52,7 +52,7 @@ public class Cannon extends GroundEnemy {
             cannonWalk[i-1] = PixelManGame.manager().get("enemies/cannon"+i+".png", Texture.class);
         }
 
-        cannon.setWalking(cannonWalk, 10);
+        cannon.setWalking(cannonWalk, 9);
 
         //Death
         Texture[] cannonDeath = new Texture[6];
@@ -74,7 +74,7 @@ public class Cannon extends GroundEnemy {
             counter++;
             if(counter>firingCount) {
                 counter=0;
-                EnemyProjectile p = new EnemyProjectile((int)(this.x+width/2f-EnemyProjectile.width/2f),(int)(this.y+height/2f-EnemyProjectile.height/2f));
+                EnemyProjectile p = new EnemyProjectile((int)(this.x+width/2f-EnemyProjectile.width/2f+Math.signum(xSpeed)*3),(int)(this.y+height/2f-EnemyProjectile.height/2f-4));
                 if(info().player.x - this.x >= 0) {
                     p.xSpeed = projectileSpeed;
                 } else {

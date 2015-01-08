@@ -1,5 +1,7 @@
 package uk.co.tabish.game.pixelman.enemy;
 
+import com.badlogic.gdx.graphics.Texture;
+import uk.co.tabish.game.pixelman.PixelManGame;
 import uk.co.tabish.game.thing.Thing;
 
 /**
@@ -12,6 +14,7 @@ public class EnemyProjectile extends Enemy {
 
     public EnemyProjectile(int x, int y) {
         super(x, y, width, height);
+        this.setTexture(PixelManGame.manager().get("enemies/bullet.png", Texture.class));
     }
 
     public void collided(Thing thing, float xVector, float yVector) {

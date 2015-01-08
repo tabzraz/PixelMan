@@ -16,7 +16,6 @@ public class PixelManGame extends TwoDimensionalGame {
     /* Graphics required:
         - Player
         - Enemies
-            - Cannon
             - Charger
             - Bullet
         - Background stuff

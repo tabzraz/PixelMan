@@ -109,7 +109,9 @@ public class GameScreen implements Screen {
                 enemies.remove(i);
                 i--;
                 //Add its death animation to the list to be shown
-                effects.add(new EffectThing(enemy.x,enemy.y,enemy.deathAnim));
+                if(enemy.deathAnim != null) {
+                    effects.add(new EffectThing(enemy.x, enemy.y, enemy.deathAnim));
+                }
             }
         }
 

@@ -75,6 +75,9 @@ public class LoadingScreen implements Screen {
             manager.load("enemies/cannondeath"+i+".png", Texture.class);
         }
 
+        //Projectile
+        manager.load("enemies/bullet.png", Texture.class);
+
         //---
 
         //--Sound--
