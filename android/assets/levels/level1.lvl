@@ -26,6 +26,6 @@ v
 LEVEL START
 Level 500 200
 Platform Platform 10 170 400 20
-Enemy Cannon 200 160
+Enemy Skeleton 200 160
 Player 100 150
 LEVEL END

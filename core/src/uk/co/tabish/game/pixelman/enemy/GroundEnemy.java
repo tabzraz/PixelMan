@@ -13,6 +13,8 @@ public class GroundEnemy extends Enemy {
 
     private int actingDistance = 200;
 
+    private int sightHeight = 40;
+
     GroundEnemyCollisionComponent collisionComponent;
 
     public GroundEnemy(int x, int y, int width, int height, int activeDist, float walk, int buffer) {
@@ -59,7 +61,7 @@ public class GroundEnemy extends Enemy {
 
     @Override
     protected boolean active() {
-        return (Math.abs(info().player.x - this.x) < actingDistance);
+        return (Math.abs(info().player.x - this.x) < actingDistance) && (Math.abs(info().player.y+info().player.bounds().height/2f - this.y) < sightHeight);
     }
 
 }

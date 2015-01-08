@@ -52,6 +52,7 @@ public class Thing {
             self = PixelManGame.manager().get("rect.png");
         }
 
+        batch.setColor(Color.WHITE);
         batch.draw(self,x,y,width,height);
 
     }

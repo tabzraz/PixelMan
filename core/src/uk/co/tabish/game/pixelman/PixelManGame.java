@@ -17,7 +17,6 @@ public class PixelManGame extends TwoDimensionalGame {
         - Player
         - Enemies
             - Charger
-            - Bullet
         - Background stuff
      */
 
