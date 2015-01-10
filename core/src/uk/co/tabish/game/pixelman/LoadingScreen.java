@@ -78,6 +78,17 @@ public class LoadingScreen implements Screen {
         //Projectile
         manager.load("enemies/bullet.png", Texture.class);
 
+        //Bull
+        for(int i=1;i<=5;i++) {
+            manager.load("enemies/bullstill"+i+".png", Texture.class);
+        }
+        for(int i=1;i<=6;i++) {
+            manager.load("enemies/bull"+i+".png", Texture.class);
+        }
+        for(int i=1;i<=8;i++) {
+            manager.load("enemies/bulldie"+i+".png", Texture.class);
+        }
+
         //---
 
         //--Sound--
