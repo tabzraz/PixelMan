@@ -89,6 +89,30 @@ public class LoadingScreen implements Screen {
             manager.load("enemies/bulldie"+i+".png", Texture.class);
         }
 
+        //Player
+        //Still
+        for(int i=1;i<=2;i++) {
+            manager.load("player/playerStill"+i+".png", Texture.class);
+        }
+
+        //Walking
+        for(int i=1;i<=6;i++) {
+            manager.load("player/playerWalk"+i+".png", Texture.class);
+        }
+
+        //Sliding
+        manager.load("player/playerSlide.png", Texture.class);
+
+        //Jumping
+        manager.load("player/playerJumpStart.png", Texture.class);
+        manager.load("player/playerJump.png", Texture.class);
+
+        //Falling
+        manager.load("player/playerFall.png", Texture.class);
+
+        //Wallhang
+        manager.load("player/playerWallhang.png", Texture.class);
+
         //---
 
         //--Sound--

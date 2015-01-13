@@ -94,6 +94,7 @@ public class PlayerCollisionComponent {
                 //Player sliding down ice platform
                 //To counteract the friction applied when colliding with a platform
                 player.ySpeed /= Player.playerWallSlidingFriction;
+                player.playerWallHanging = true;
 
             }
 
@@ -155,6 +156,7 @@ public class PlayerCollisionComponent {
             if(player.ySpeed > 0f) {
                 //Player is sliding down a wall
                 player.ySpeed *= Player.playerWallSlidingFriction;
+                player.playerWallHanging = true;
             }
 
         }

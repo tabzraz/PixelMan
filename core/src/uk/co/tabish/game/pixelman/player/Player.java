@@ -14,13 +14,13 @@ public class Player extends Thing {
     public static final float playerMaxXSpeed = 125f;
     public static final float playerMaxYSpeed = 200f;
 
-    public static final float playerGroundHorizAccelNormal = 1500f;
+    public static final float playerGroundHorizAccelNormal = 500f;
     public static final float playerAirHorizAccel = 100f;
 
-    public static final float playerGroundFriction = 0.2f;
+    public static final float playerGroundFriction = 0.05f;
     public static final float playerAirFriction = 0.0f;
 
-    public static final float playerGroundClampSpeed = 20f;
+    public static final float playerGroundClampSpeed = 5f;
     public static final float playerAirClampSpeed = 0f;
 
     public static final float playerJumpSpeed = -80f;
@@ -47,6 +47,8 @@ public class Player extends Thing {
 
     public float playerGroundHorizAccel = playerGroundHorizAccelNormal;
 
+    public boolean playerWallHanging = false;
+
     //Private player values
     private int playerLife = 3;
 
@@ -58,6 +60,7 @@ public class Player extends Thing {
     private PlayerPhysicsComponent physicsComponent;
     private PlayerInputComponent inputComponent;
     private PlayerCollisionComponent collisionComponent;
+    private PlayerAnimationComponent animationComponent;
 
     public Player(float x, float y) {
         super(x, y, playerWidth, playerHeight);
@@ -68,6 +71,8 @@ public class Player extends Thing {
         inputComponent = new PlayerInputComponent();
 
         collisionComponent = new PlayerCollisionComponent(physicsComponent);
+
+        animationComponent = new PlayerAnimationComponent();
     }
 
     @Override
@@ -108,11 +113,7 @@ public class Player extends Thing {
 
     @Override
     public void draw(SpriteBatch batch) {
-        batch.setColor(Color.GREEN);
-        if(invincible) {
-            batch.setColor(Color.MAGENTA);
-        }
-        super.draw(batch);
+        animationComponent.drawPlayer(batch,this);
     }
 
 }

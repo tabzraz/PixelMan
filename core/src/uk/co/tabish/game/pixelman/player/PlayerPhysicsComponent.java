@@ -85,6 +85,9 @@ public class PlayerPhysicsComponent {
         //To prevent infinite jump
         player.playerInAir=true;
 
+        //Reset wall hanging
+        player.playerWallHanging = false;
+
     }
 
     public void setXFriction(float fric) {
