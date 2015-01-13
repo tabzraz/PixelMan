@@ -27,6 +27,6 @@ LEVEL START
 Level 500 200
 Platform Platform 10 170 400 20
 Platform Platform 300 140 40 20
--Enemy Charger 200 160
+Enemy Skeleton 200 160
 Player 100 150
 LEVEL END

@@ -66,7 +66,7 @@ public class PlayerPhysicsComponent {
             this.setXFriction(Player.playerAirFriction);
             this.setXClampSpeed(Player.playerAirClampSpeed);
         } else {
-            this.setXFriction(Player.playerGroundFriction);
+            this.setXFriction(Player.playerGroundFriction*(1f-Math.abs(player.xAccel/Player.playerGroundHorizAccelNormal)));
             this.setXClampSpeed(Player.playerGroundClampSpeed);
             if(!player.playerJumping) {
                 //Reset the ability to double jump unless you have just started jumping

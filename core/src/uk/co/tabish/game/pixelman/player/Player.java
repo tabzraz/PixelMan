@@ -14,13 +14,13 @@ public class Player extends Thing {
     public static final float playerMaxXSpeed = 125f;
     public static final float playerMaxYSpeed = 200f;
 
-    public static final float playerGroundHorizAccelNormal = 500f;
+    public static final float playerGroundHorizAccelNormal = 400f;
     public static final float playerAirHorizAccel = 100f;
 
-    public static final float playerGroundFriction = 0.05f;
+    public static final float playerGroundFriction = 0.2f;
     public static final float playerAirFriction = 0.0f;
 
-    public static final float playerGroundClampSpeed = 5f;
+    public static final float playerGroundClampSpeed = 6f;
     public static final float playerAirClampSpeed = 0f;
 
     public static final float playerJumpSpeed = -80f;
@@ -34,7 +34,7 @@ public class Player extends Thing {
 
     public static final float playerDeathDistance = 4f;
 
-    public static final int playerInvincibleCount = 40;
+    public static final int playerInvincibleCount = 80;
 
     //Player variables shared by components
     public boolean playerInAir = false;
@@ -81,6 +81,7 @@ public class Player extends Thing {
 
         physicsComponent.moveThing(this);
 
+        //TODO: Move this into the animation component
         if(this.invincible) {
             this.invincibleCounter++;
             if(this.invincibleCounter > Player.playerInvincibleCount) {
@@ -88,6 +89,8 @@ public class Player extends Thing {
                 invincibleCounter=0;
             }
         }
+
+        animationComponent.setInvincibleStatus(invincible);
     }
 
     @Override

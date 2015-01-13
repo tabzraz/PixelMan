@@ -24,6 +24,9 @@ public class PlayerAnimationComponent {
     private boolean jumpStarting = false;
     private int jumpStartCounter = 0;
 
+    private boolean invincible = false;
+    private int flashInvincible = 0;
+
     public PlayerAnimationComponent() {
 
         //Still
@@ -31,7 +34,7 @@ public class PlayerAnimationComponent {
         for(int i=1;i<=2;i++) {
             stillT[i-1] = PixelManGame.manager().get("player/playerStill" + i + ".png", Texture.class);
         }
-        still = new AnimationComponent(stillT,15);
+        still = new AnimationComponent(stillT,20);
 
         //Walking
         Texture[] walkT = new Texture[6];
@@ -53,6 +56,14 @@ public class PlayerAnimationComponent {
         //Wallhang
         wallHang = PixelManGame.manager().get("player/playerWallhang.png", Texture.class);
 
+    }
+
+    public void setInvincibleStatus(boolean invin) {
+        invincible = invin;
+        flashInvincible++;
+        if(flashInvincible>20) {
+            flashInvincible = 0;
+        }
     }
 
     public void drawPlayer(SpriteBatch batch, Player player) {
@@ -108,7 +119,12 @@ public class PlayerAnimationComponent {
         //System.out.println(wasOnGround);
         couldDoubleJump = player.canDoubleJump;
 
-        batch.setColor(Color.WHITE);
+        if(invincible && flashInvincible<11) {
+            batch.setColor(Color.RED);
+        } else {
+            batch.setColor(Color.WHITE);
+        }
+
         batch.draw(toDraw,player.x-2,player.y-4,toDraw.getWidth(),toDraw.getHeight(),0,0,toDraw.getWidth(),toDraw.getHeight(),!facingLeft,false);
     }
 }
