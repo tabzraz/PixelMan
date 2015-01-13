@@ -9,12 +9,12 @@ public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
        - Graphics
-       - Particle Effects
+       - Demo Level
+       - TitleScreen
        - Android touch controls
        - Sound
      */
     /* Graphics required:
-        - Player
         - Background stuff
      */
 

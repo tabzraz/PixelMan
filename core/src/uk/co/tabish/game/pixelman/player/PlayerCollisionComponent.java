@@ -40,6 +40,8 @@ public class PlayerCollisionComponent {
         if(Math.abs(yVector)<Math.abs(xVector) && yVector < 0f) {
             //Vertical collision and player was above enemy when collision occured
             enemy.dead = true;
+            //Bounce player off of the enemies head
+            player.ySpeed = Player.playerJumpSpeed;
 
         } else {
             this.collidedWithEnemy(enemy,xVector,yVector,player);
