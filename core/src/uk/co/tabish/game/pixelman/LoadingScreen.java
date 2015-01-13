@@ -33,6 +33,12 @@ public class LoadingScreen implements Screen {
 
         //---Textures---
 
+        //Background
+        //Clouds
+        manager.load("background/cloud1.png", Texture.class);
+        manager.load("background/cloud2.png", Texture.class);
+        manager.load("background/cloud3.png", Texture.class);
+
         //Platforms
         //Plain
         manager.load("platforms/PlainBack.png", Texture.class);

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.Screen;
+import uk.co.tabish.game.pixelman.background.Background;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
 import uk.co.tabish.game.pixelman.effects.EffectThing;
 import uk.co.tabish.game.pixelman.enemy.Cannon;
@@ -28,6 +29,8 @@ public class GameScreen implements Screen {
     private Level level;
 
     private Player player;
+
+    private Background background;
 
     //Platforms
     private List<Thing> platforms = new ArrayList<Thing>();
@@ -62,6 +65,7 @@ public class GameScreen implements Screen {
         platforms = new ArrayList<Thing>();
         enemies = new ArrayList<Enemy>();
         enemiesToAdd = new ArrayList<Enemy>();
+        background = new Background();
 
         //Get level
         level = LevelReader.getLevel("level1");
@@ -192,9 +196,12 @@ public class GameScreen implements Screen {
         //Use internal camera
         batch.setProjectionMatrix(camera.combined);
 
-        //Background
+        //Background sky
         batch.setColor(99f/255f,155f/255f,255f/255f,1f);
         batch.draw(PixelManGame.manager().get("rect.png", Texture.class), camera.position.x-cameraWidth/2f,camera.position.y-cameraHeight/2f,cameraWidth,cameraHeight);
+
+        //Background clouds
+        background.draw(batch, camera);
 
         //Draw platforms
         for(Thing thing : platforms) {
