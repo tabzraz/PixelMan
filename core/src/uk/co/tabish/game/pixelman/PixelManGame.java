@@ -8,14 +8,10 @@ import uk.co.tabish.game.TwoDimensionalGame;
 public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
-       - Graphics
        - Demo Level
        - TitleScreen
        - Android touch controls
-       - Sound
-     */
-    /* Graphics required:
-        - Background stuff
+       - Enemy hitting animations
      */
 
     //Screen constants
