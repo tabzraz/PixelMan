@@ -21,9 +21,9 @@ public class Background {
     Texture smallHill;
 
     public Background() {
-        Random rnd = new Random();
+        //Random rnd = new Random();
         for(int i=0;i<10;i++) {
-            yPositions.add(rnd.nextInt(130));
+            yPositions.add((i*23)%57);
         }
 
         for(int i=1;i<=3;i++) {
@@ -41,6 +41,7 @@ public class Background {
 
         batch.setColor(Color.WHITE);
 
+        //Hills
         for(float i= camera.position.x- camera.viewportWidth/2f;i<camera.position.x+camera.viewportWidth/2f;i+=smallHill.getWidth()+10) {
             batch.draw(smallHill, i, camera.position.y+camera.viewportHeight/2f-smallHill.getHeight());
         }
@@ -49,11 +50,11 @@ public class Background {
             batch.draw(smallHill, i, camera.position.y+camera.viewportHeight/2f-smallHill.getHeight());
         }
 
-        //Hill
-        batch.draw(hill, camera.position.x-(hill.getWidth()/2f), camera.position.y+camera.viewportHeight/2f-hill.getHeight());
+        //Big Hill
+        batch.draw(hill, camera.position.x+35, camera.position.y+camera.viewportHeight/2f-hill.getHeight());
 
         //Castle
-        batch.draw(castle, camera.position.x-castle.getWidth()/2f, camera.position.y+camera.viewportHeight/2f-hill.getHeight()+20-castle.getHeight());
+        batch.draw(castle, camera.position.x+35+12.5f, camera.position.y+camera.viewportHeight/2f-hill.getHeight()+20-castle.getHeight());
 
         //batch.setColor(Color.WHITE);
 
