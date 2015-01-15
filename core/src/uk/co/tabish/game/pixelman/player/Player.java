@@ -7,7 +7,7 @@ import uk.co.tabish.game.thing.Thing;
 public class Player extends Thing {
 
     //Player constants
-    public static final int playerWidth = 10;
+    public static final int playerWidth = 8;
     public static final int playerHeight = 16;
 
     //Player constants used by components
