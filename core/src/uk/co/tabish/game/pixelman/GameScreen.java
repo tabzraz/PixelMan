@@ -201,7 +201,7 @@ public class GameScreen implements Screen {
         batch.draw(PixelManGame.manager().get("rect.png", Texture.class), camera.position.x-cameraWidth/2f,camera.position.y-cameraHeight/2f,cameraWidth,cameraHeight);
 
         //Background clouds
-        background.draw(batch, camera);
+        background.draw(batch, camera, level);
 
         //Draw platforms
         for(Thing thing : platforms) {

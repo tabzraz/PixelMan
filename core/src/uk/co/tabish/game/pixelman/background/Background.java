@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import uk.co.tabish.game.pixelman.PixelManGame;
+import uk.co.tabish.game.pixelman.level.Level;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -37,7 +38,7 @@ public class Background {
         smallHill = PixelManGame.manager().get("background/hillsmall.png", Texture.class);
     }
 
-    public void draw(SpriteBatch batch, Camera camera) {
+    public void draw(SpriteBatch batch, Camera camera, Level level) {
 
         batch.setColor(Color.WHITE);
 
@@ -51,16 +52,14 @@ public class Background {
         }
 
         //Big Hill
-        batch.draw(hill, camera.position.x+35, camera.position.y+camera.viewportHeight/2f-hill.getHeight());
+        batch.draw(hill, camera.position.x+camera.viewportWidth-(camera.viewportWidth*2f)*(camera.position.x/level.getWidth()), camera.position.y+camera.viewportHeight/2f-hill.getHeight());
 
         //Castle
-        batch.draw(castle, camera.position.x+35+12.5f, camera.position.y+camera.viewportHeight/2f-hill.getHeight()+20-castle.getHeight());
-
-        //batch.setColor(Color.WHITE);
+        batch.draw(castle, camera.position.x+camera.viewportWidth-(camera.viewportWidth*2f)*(camera.position.x/level.getWidth())+12.5f, camera.position.y+camera.viewportHeight/2f-hill.getHeight()+20-castle.getHeight());
 
         //Clouds
         for(int i=0;i<yPositions.size();i++) {
-            batch.draw(clouds[i%clouds.length],  camera.position.x-camera.viewportWidth/2f+(((xOffset + 50*i) % 500)-50),camera.position.y-camera.viewportHeight/2f+yPositions.get(i));
+            batch.draw(clouds[i%clouds.length],  camera.position.x-camera.viewportWidth/2f+(((xOffset + 50*i) % 500)-50),camera.position.y-camera.viewportHeight/2f+yPositions.get(i)-(50f*camera.position.y/level.getHeight()));
         }
 
         xIncreaser++;
