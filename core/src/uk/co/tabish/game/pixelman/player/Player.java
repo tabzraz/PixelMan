@@ -34,7 +34,7 @@ public class Player extends Thing {
 
     public static final float playerDeathDistance = 4f;
 
-    public static final int playerInvincibleCount = 80;
+    public static final int playerInvincibleCount = 120;
 
     //Player variables shared by components
     public boolean playerInAir = false;

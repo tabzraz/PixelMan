@@ -60,9 +60,11 @@ public class PlayerAnimationComponent {
 
     public void setInvincibleStatus(boolean invin) {
         invincible = invin;
-        flashInvincible++;
-        if(flashInvincible>20) {
-            flashInvincible = 0;
+        if(invincible) {
+            flashInvincible++;
+            if (flashInvincible > 20) {
+                flashInvincible = 0;
+            }
         }
     }
 
@@ -120,7 +122,7 @@ public class PlayerAnimationComponent {
         couldDoubleJump = player.canDoubleJump;
 
         if(invincible && flashInvincible<11) {
-            batch.setColor(Color.RED);
+            batch.setColor(1f,0f,0f,0.5f);
         } else {
             batch.setColor(Color.WHITE);
         }
