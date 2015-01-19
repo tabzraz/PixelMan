@@ -62,7 +62,7 @@ public class PlayerAnimationComponent {
         invincible = invin;
         if(invincible) {
             flashInvincible++;
-            if (flashInvincible > 20) {
+            if (flashInvincible > 10) {
                 flashInvincible = 0;
             }
         }
@@ -121,7 +121,7 @@ public class PlayerAnimationComponent {
         //System.out.println(wasOnGround);
         couldDoubleJump = player.canDoubleJump;
 
-        if(invincible && flashInvincible<11) {
+        if(invincible && flashInvincible<6) {
             batch.setColor(1f,0f,0f,0.5f);
         } else {
             batch.setColor(Color.WHITE);
