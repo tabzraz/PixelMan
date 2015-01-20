@@ -59,7 +59,7 @@ public class Background {
 
         //Clouds
         for(int i=0;i<yPositions.size();i++) {
-            batch.draw(clouds[i%clouds.length],  camera.position.x-camera.viewportWidth/2f+(((xOffset + 50*i) % 500)-50),camera.position.y-camera.viewportHeight/2f+yPositions.get(i)-(50f*camera.position.y/level.getHeight()));
+            batch.draw(clouds[i%clouds.length],  camera.position.x-camera.viewportWidth/2f+(((xOffset + 50*i) % 500)-50),camera.position.y-camera.viewportHeight/2f+yPositions.get(i)+40-(70f*camera.position.y/level.getHeight()));
         }
 
         xIncreaser++;

@@ -2,6 +2,7 @@ package uk.co.tabish.game.pixelman.player;
 
 import uk.co.tabish.game.pixelman.enemy.Enemy;
 import uk.co.tabish.game.pixelman.enemy.GroundEnemy;
+import uk.co.tabish.game.pixelman.level.LevelEnd;
 import uk.co.tabish.game.pixelman.platform.*;
 import uk.co.tabish.game.thing.Thing;
 
@@ -22,10 +23,13 @@ public class PlayerCollisionComponent {
 
         if(thing instanceof DeadlyPlatform) {
             this.collidedWithDeadlyPlatform((DeadlyPlatform) thing, xVector, yVector, player);
+        } else if(thing instanceof LevelEnd) {
+            //TEMP
+            player.playerDied();
         } else if(thing instanceof IcePlatform) {
             this.collidedWithIcePlatform((IcePlatform) thing, xVector, yVector, player);
         } else if(thing instanceof OneWayPlatform) {
-            this.collidedWithOneWayPlatform((OneWayPlatform)thing,xVector,yVector,player);
+            this.collidedWithOneWayPlatform((OneWayPlatform) thing, xVector, yVector, player);
         } else if(thing instanceof Platform) {
             this.collidedWithPlatform((Platform) thing, xVector, yVector, player);
         } else if(thing instanceof GroundEnemy) {

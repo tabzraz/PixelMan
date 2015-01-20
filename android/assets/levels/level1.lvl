@@ -16,6 +16,8 @@ Player - x,y
 //Level
 Level width,height
 
+Crystal x y
+
 //Level orientation
 +-------->
 |
@@ -26,7 +28,8 @@ v
 LEVEL START
 
 Level 1000 1010
-Player 470 950
+Player 970 770
+Crystal 850 780
 
 ---Section 1---
 
@@ -39,12 +42,54 @@ Platform Platform 200 970 30 30
 Platform Platform 300 970 30 30
 Platform Platform 400 950 30 50
 
-
 Platform Platform 548 1000 452 10
 
 Platform Deadly 500 1000 48 10
 
 Enemy Skeleton 700 985
 Platform Oneway 650 980 100 10
+
+Platform Moving 950 790 50 10 0 20 0 200
+
+---Section 2---
+
+Platform Ice 850 800 100 10
+Platform Ice 800 780 50 30
+Platform Ice 700 800 100 10
+Enemy Skeleton 720 780
+Platform Ice 680 780 20 30
+
+Platform Ice 500 800 180 10
+Platform Ice 480 600 20 210
+
+Platform Ice 500 770 50 10
+Platform Ice 600 740 100 10
+Enemy Skeleton 650 720
+
+Platform Ice 500 710 50 10
+Platform Ice 600 680 100 10
+Enemy Skeleton 690 660
+
+Platform Ice 500 650 50 10
+Platform Ice 600 620 100 10
+Enemy Skeleton 690 600
+
+Platform Ice 400 600 80 10
+Enemy Skeleton 400 580
+Enemy Skeleton 420 580
+
+Platform Platform 0 600 400 10
+Enemy Charger 120 580
+
+Platform Moving 0 390 100 10 0 20 0 200
+
+--Section 3--
+
+
+
+
+
+
+
 
 LEVEL END

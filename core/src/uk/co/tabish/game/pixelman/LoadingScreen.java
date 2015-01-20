@@ -126,6 +126,11 @@ public class LoadingScreen implements Screen {
         //Wallhang
         manager.load("player/playerWallhang.png", Texture.class);
 
+        //Level End Crystal
+        for(int i=1;i<=6;i++) {
+            manager.load("level/Crystal"+i+".png", Texture.class);
+        }
+
         //---
 
         //--Sound--

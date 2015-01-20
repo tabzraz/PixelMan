@@ -79,6 +79,9 @@ public class LevelReader {
 
                     enemies.add(createEnemy(words,enemiesToAdd));
 
+                } else if(words[0].equals("Crystal")) {
+
+                    platforms.add(new LevelEnd(Integer.valueOf(words[1]), Integer.valueOf(words[2])));
                 }
             }
 
