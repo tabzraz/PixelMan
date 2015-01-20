@@ -28,8 +28,7 @@ v
 LEVEL START
 
 Level 1000 1010
-Player 970 770
-Crystal 850 780
+Player 940 100
 
 ---Section 1---
 
@@ -81,15 +80,40 @@ Enemy Skeleton 420 580
 Platform Platform 0 600 400 10
 Enemy Charger 120 580
 
-Platform Moving 0 390 100 10 0 20 0 200
+Platform Moving 0 390 50 10 0 20 0 200
 
---Section 3--
+---Section 3---
 
+Platform Platform 50 400 100 10
+Platform Platform 400 400 50 10
+Platform Platform 500 200 10 200
+Platform Deadly 150 400 250 10
+Platform Deadly 450 400 50 10
 
+Platform Moving 150 380 30 5 40 0 220 0
 
+Platform Moving 450 390 25 5 0 -40 0 100
+Platform Moving 475 200 25 5 0 40 0 100
 
+---Section 4---
 
+Platform Platform 510 200 165 10
+Enemy Cannon 640 180
+Platform Platform 675 175 25 35
+Platform Platform 700 200 300 10
+Enemy Cannon 900 180
 
+Platform Oneway 900 180 100 10
+Platform Oneway 800 150 200 10
+Platform Oneway 700 125 100 10
+Platform Oneway 700 100 100 10
 
+Enemy Skeleton 850 130
+
+Platform Moving 500 100 50 10 40 0 150 0
+
+Platform Platform 300 100 200 10
+
+Crystal 310 80
 
 LEVEL END

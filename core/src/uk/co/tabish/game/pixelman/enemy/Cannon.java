@@ -86,6 +86,11 @@ public class Cannon extends GroundEnemy {
     }
 
     @Override
+    protected boolean active() {
+        return (Math.abs(info().player.x - this.x) < activeDist) && (Math.abs(info().player.y+info().player.bounds().height/2f - this.y) < 10);
+    }
+
+    @Override
     public void draw(SpriteBatch batch) {
         cannon.drawTexture(batch,this,-2,-4);
     }

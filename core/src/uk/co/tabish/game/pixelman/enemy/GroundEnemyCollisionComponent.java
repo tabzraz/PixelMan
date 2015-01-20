@@ -1,5 +1,6 @@
 package uk.co.tabish.game.pixelman.enemy;
 
+import uk.co.tabish.game.pixelman.platform.OneWayPlatform;
 import uk.co.tabish.game.thing.PhysicsComponent;
 import uk.co.tabish.game.thing.Thing;
 
@@ -15,6 +16,11 @@ public class GroundEnemyCollisionComponent {
         if (Math.abs(yVector) < Math.abs(xVector)) {
 
             if (yVector < 0f) {
+
+                //Since oneway platforms aren't solid
+                if(thing instanceof OneWayPlatform) {
+                    enemy.y+=yVector;
+                }
 
                 //Extra logic here is for moving platforms, can't really split them up
                 if (thing.ySpeed <= 0f) {
