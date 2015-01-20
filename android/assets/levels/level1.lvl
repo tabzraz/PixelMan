@@ -1,6 +1,6 @@
 //Platforms (prefixed with Platform)
 Platform - x,y,width,height
-Deadly
+Deadly (make 2 less than multiple of 10)
 Ice
 Moving - x,y,width,height,xs,ys,hdist,vdist
 Oneway
@@ -25,10 +25,26 @@ v
 
 LEVEL START
 
-Level 500 200
+Level 1000 1010
+Player 470 950
 
-Platform Platform 10 170 400 20
-Platform Platform 300 140 40 20
-Enemy Skeleton 200 160
-Player 100 150
+---Section 1---
+
+Platform Platform 0 1000 500 10
+Platform Platform -10 0 10 1000
+Platform Platform 1000 0 10 1000
+
+Platform Platform 100 985 30 15
+Platform Platform 200 970 30 30
+Platform Platform 300 970 30 30
+Platform Platform 400 950 30 50
+
+
+Platform Platform 548 1000 452 10
+
+Platform Deadly 500 1000 48 10
+
+Enemy Skeleton 700 985
+Platform Oneway 650 980 100 10
+
 LEVEL END

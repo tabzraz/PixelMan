@@ -16,7 +16,7 @@ public class Cannon extends GroundEnemy {
     private static final int height = 10;
 
     private static final float walkSpeed = 30f;
-    private static final int activeDist = 400;
+    private static final int activeDist = 150;
     private static final int bufferDist = 10;
 
     //Projectile variables

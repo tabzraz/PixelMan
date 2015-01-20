@@ -83,9 +83,11 @@ public class Player extends Thing {
 
         //TODO: Move this into the animation component
         if(this.invincible) {
+            this.solid = false;
             this.invincibleCounter++;
             if(this.invincibleCounter > Player.playerInvincibleCount) {
                 invincible = false;
+                this.solid = true;
                 invincibleCounter=0;
             }
         }

@@ -19,7 +19,7 @@ public class Skeleton extends GroundEnemy{
 
     private static final int bufferDist = 10;
 
-    private static final int activationDistance = 200;
+    private static final int activationDistance = 100;
 
     private EnemyAnimationComponent skeleton = new EnemyAnimationComponent();
 

@@ -44,18 +44,18 @@ public class Background {
 
         //Hills
         for(float i= camera.position.x- camera.viewportWidth/2f;i<camera.position.x+camera.viewportWidth/2f;i+=smallHill.getWidth()+10) {
-            batch.draw(smallHill, i, camera.position.y+camera.viewportHeight/2f-smallHill.getHeight());
+            batch.draw(smallHill, i, level.getHeight()-10-smallHill.getHeight());
         }
 
         for(float i= camera.position.x- camera.viewportWidth/2f+15;i<camera.position.x+camera.viewportWidth/2f;i+=smallHill.getWidth()+10) {
-            batch.draw(smallHill, i, camera.position.y+camera.viewportHeight/2f-smallHill.getHeight());
+            batch.draw(smallHill, i, level.getHeight()-10-smallHill.getHeight());
         }
 
         //Big Hill
-        batch.draw(hill, camera.position.x+camera.viewportWidth-(camera.viewportWidth*2f)*(camera.position.x/level.getWidth()), camera.position.y+camera.viewportHeight/2f-hill.getHeight());
+        batch.draw(hill, camera.position.x+camera.viewportWidth-(camera.viewportWidth*2f)*(camera.position.x/level.getWidth()), level.getHeight()+8-hill.getHeight());
 
         //Castle
-        batch.draw(castle, camera.position.x+camera.viewportWidth-(camera.viewportWidth*2f)*(camera.position.x/level.getWidth())+12.5f, camera.position.y+camera.viewportHeight/2f-hill.getHeight()+20-castle.getHeight());
+        batch.draw(castle, camera.position.x+camera.viewportWidth-(camera.viewportWidth*2f)*(camera.position.x/level.getWidth())+12.5f, level.getHeight()+8-15-castle.getHeight());
 
         //Clouds
         for(int i=0;i<yPositions.size();i++) {

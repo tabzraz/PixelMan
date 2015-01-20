@@ -17,7 +17,7 @@ public class Charger  extends GroundEnemy {
 
     private static final int bufferDist = 80;
 
-    private static final int activationDistance = 250;
+    private static final int activationDistance = 150;
     
     private EnemyAnimationComponent bull = new EnemyAnimationComponent();
 
