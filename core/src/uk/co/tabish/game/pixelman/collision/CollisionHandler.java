@@ -40,9 +40,11 @@ public class CollisionHandler {
             } else {
                 moving.y += yVector;
             }
-        }
 
-        moving.collided(stationary,xVector,yVector);
+
+            moving.collided(stationary, xVector, yVector);
+
+        }
 
     }
 }

@@ -30,7 +30,7 @@ public class GroundEnemy extends Enemy {
         //Collision Component
         collisionComponent = new GroundEnemyCollisionComponent();
 
-        this.solid = false;
+        this.solid = true;
     }
 
     public void update() {
