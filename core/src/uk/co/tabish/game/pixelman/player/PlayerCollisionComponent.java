@@ -41,7 +41,7 @@ public class PlayerCollisionComponent {
     }
 
     public void collidedWithGroundEnemy(GroundEnemy enemy, float xVector, float yVector, Player player) {
-        if(Math.abs(yVector)<Math.abs(xVector) && yVector < 0f) {
+        if(Math.abs(yVector)<Math.abs(xVector) && yVector < 0f && player.solid) {
             //Vertical collision and player was above enemy when collision occured
             enemy.dead = true;
             //Bounce player off of the enemies head

@@ -31,6 +31,11 @@ public class LoadingScreen implements Screen {
 
         //Load all assets here
 
+        //Title screen
+        manager.load("title/start.png", Texture.class);
+        manager.load("title/title.png", Texture.class);
+
+
         //---Textures---
 
         //Background
@@ -161,7 +166,7 @@ public class LoadingScreen implements Screen {
     public int changeScreenTo() {
         if(finished) {
             //Temp, go to game screen
-            return PixelManGame.GAME_SCREEN;
+            return PixelManGame.TITLE_SCREEN;
         } else {
             return -1;
         }

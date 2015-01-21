@@ -8,29 +8,33 @@ import uk.co.tabish.game.TwoDimensionalGame;
 public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
-       - Demo Level
        - TitleScreen
        - Android touch controls
+       - Camera scaling
        - Enemy hitting animations
      */
 
     //Screen constants
     public static final int LOADING_SCREEN = 3;
     public static final int GAME_SCREEN = 4;
+    public static final int TITLE_SCREEN = 5;
 
     //Screen objects
     Screen loadingScreen;
     Screen gameScreen;
+    Screen titleScreen;
 
     @Override
     public void init() {
         //Make screens
         loadingScreen = new LoadingScreen(PixelManGame.manager());
         gameScreen = new GameScreen();
+        titleScreen = new TitleScreen();
 
         //Add screens to map
         this.addScreen(LOADING_SCREEN, loadingScreen);
         this.addScreen(GAME_SCREEN, gameScreen);
+        this.addScreen(TITLE_SCREEN, titleScreen);
 
         //Set loading screen as first screen
         this.initialScreen(LOADING_SCREEN);
