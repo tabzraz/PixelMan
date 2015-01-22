@@ -8,10 +8,10 @@ import uk.co.tabish.game.TwoDimensionalGame;
 public class PixelManGame extends TwoDimensionalGame {
 
     /* TODO:
-       - TitleScreen
        - Android touch controls
        - Camera scaling
        - Enemy hitting animations
+       - Sounds
      */
 
     //Screen constants
