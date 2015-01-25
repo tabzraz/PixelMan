@@ -48,6 +48,8 @@ public class PixelManGame extends TwoDimensionalGame {
 
         //Set loading screen as first screen
         this.initialScreen(LOADING_SCREEN);
+
+        //this.disableFps();
     }
 
     @Override

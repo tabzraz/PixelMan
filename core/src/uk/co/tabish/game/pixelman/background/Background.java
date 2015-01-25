@@ -44,11 +44,11 @@ public class Background {
 
         //Hills
         for(float i= camera.position.x- camera.viewportWidth/2f;i<camera.position.x+camera.viewportWidth/2f;i+=smallHill.getWidth()+10) {
-            batch.draw(smallHill, i, level.getHeight()-10-smallHill.getHeight());
+            batch.draw(smallHill, i, level.getHeight()-smallHill.getHeight());
         }
 
         for(float i= camera.position.x- camera.viewportWidth/2f+15;i<camera.position.x+camera.viewportWidth/2f;i+=smallHill.getWidth()+10) {
-            batch.draw(smallHill, i, level.getHeight()-10-smallHill.getHeight());
+            batch.draw(smallHill, i, level.getHeight()-smallHill.getHeight());
         }
 
         //Big Hill

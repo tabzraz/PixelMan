@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.pixelman.background.Background;
 import uk.co.tabish.game.pixelman.collision.CollisionHandler;
@@ -171,6 +172,7 @@ public class GameScreen implements Screen {
             camera.position.set(level.getWidth() - cameraWidth/2f,camera.position.y,0f);
         }
 
+        //TODO: FIX vertical panning so that the player remains in the top halifish of the screen
         //Vertical panning
         //Is the camera going to be pushed into an incorrect place, if so then correct it
         if(player.y + cameraHeight/6f>= cameraHeight/2f && player.y+player.bounds().height-cameraHeight/6f <= level.getHeight() - cameraHeight/2f) {
@@ -200,11 +202,13 @@ public class GameScreen implements Screen {
 
     }
 
+    Rectangle cam = new Rectangle();
     @Override
     public void draw(SpriteBatch batch) {
 
         //Use internal camera
         batch.setProjectionMatrix(camera.combined);
+        cam.set(camera.position.x-cameraWidth/2f,camera.position.y-cameraHeight/2f,cameraWidth,cameraHeight);
 
         //Background sky
         batch.setColor(99f/255f,155f/255f,255f/255f,1f);
@@ -215,12 +219,16 @@ public class GameScreen implements Screen {
 
         //Draw platforms
         for(Thing thing : platforms) {
-            thing.draw(batch);
+            if(cam.overlaps(thing.bounds())) {
+                thing.draw(batch);
+            }
         }
 
         //Draw enemies
         for(Thing thing : enemies) {
-            thing.draw(batch);
+            if(cam.overlaps(thing.bounds())) {
+                thing.draw(batch);
+            }
         }
 
         //Draw player

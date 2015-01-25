@@ -54,9 +54,9 @@ public class InputHandler implements InputProcessor {
         camera.setToOrtho(true, width,height);
         //System.out.println(width+","+height);
 
-        left = new Rectangle(0.05f,0.7f,0.2f,0.2f*0.6f*width/height);
-        right = new Rectangle(0.3f,0.7f,0.2f,0.2f*0.6f*width/height);
-        up = new Rectangle(0.75f,0.675f,0.15f,0.15f*width/height);
+        left = new Rectangle(0.05f,0.78f,0.2f,0.2f*0.6f*width/height);
+        right = new Rectangle(0.3f,0.78f,0.2f,0.2f*0.6f*width/height);
+        up = new Rectangle(0.75f,0.73f,0.15f,0.15f*width/height);
 
         this.isAndroid = isAndroid;
     }
@@ -121,7 +121,9 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
+        TouchInfo info = fingers.get(pointer);
+        info.bounds.set(screenX/(PixelManGame.width * 1f), screenY/(PixelManGame.height * 1f), InputHandler.fingerRadius, InputHandler.fingerRadius);
+        return true;
     }
 
     @Override
