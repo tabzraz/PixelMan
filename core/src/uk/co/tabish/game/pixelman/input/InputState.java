@@ -1,4 +1,4 @@
-package uk.co.tabish.game;
+package uk.co.tabish.game.pixelman.input;
 
 public class InputState {
     

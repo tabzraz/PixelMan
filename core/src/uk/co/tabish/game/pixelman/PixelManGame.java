@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import uk.co.tabish.game.Screen;
 import uk.co.tabish.game.TwoDimensionalGame;
+import uk.co.tabish.game.pixelman.input.InputHandler;
 
 public class PixelManGame extends TwoDimensionalGame {
 
@@ -24,11 +25,20 @@ public class PixelManGame extends TwoDimensionalGame {
     Screen gameScreen;
     Screen titleScreen;
 
+    //Input handler
+    InputHandler inputHandler;
+
     @Override
     public void init() {
+
+        //Initialise input handler
+        inputHandler = new InputHandler(input(), isAndroid());
+
+        Gdx.input.setInputProcessor(inputHandler);
+
         //Make screens
         loadingScreen = new LoadingScreen(PixelManGame.manager());
-        gameScreen = new GameScreen();
+        gameScreen = new GameScreen(inputHandler);
         titleScreen = new TitleScreen();
 
         //Add screens to map
@@ -42,12 +52,8 @@ public class PixelManGame extends TwoDimensionalGame {
 
     @Override
     public void processInput() {
-
-        //Hard coded input for the time being
-        //Move this into an input handling
-        input().left = Gdx.input.isKeyPressed(Input.Keys.A);
-        input().right = Gdx.input.isKeyPressed(Input.Keys.D);
-        input().up = Gdx.input.isKeyPressed(Input.Keys.W);
+        if(isAndroid()) {
+            inputHandler.processInput();
+        }
     }
-
 }

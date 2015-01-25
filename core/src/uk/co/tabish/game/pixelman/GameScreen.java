@@ -12,6 +12,7 @@ import uk.co.tabish.game.pixelman.effects.EffectThing;
 import uk.co.tabish.game.pixelman.enemy.Cannon;
 import uk.co.tabish.game.pixelman.enemy.Enemy;
 import uk.co.tabish.game.pixelman.enemy.Info;
+import uk.co.tabish.game.pixelman.input.InputHandler;
 import uk.co.tabish.game.pixelman.level.Level;
 import uk.co.tabish.game.pixelman.level.LevelReader;
 import uk.co.tabish.game.pixelman.platform.IcePlatform;
@@ -47,12 +48,21 @@ public class GameScreen implements Screen {
     private float cameraHeight = 150;
     private float cameraWidth = 200;
 
+    //InputHandler
+    private InputHandler inputHandler;
+
+    public GameScreen(InputHandler input) {
+        this.inputHandler = input;
+    }
+
     @Override
     public void init() {
 
         camera = new OrthographicCamera();
         cameraWidth = cameraHeight * PixelManGame.width/PixelManGame.height;
         camera.setToOrtho(true,cameraWidth,cameraHeight);
+
+        inputHandler.getAssets();
 
         setupLevel();
 
@@ -221,6 +231,8 @@ public class GameScreen implements Screen {
         for(EffectThing effectThing : effects) {
             effectThing.draw(batch);
         }
+
+        inputHandler.draw(batch);
     }
 
     @Override

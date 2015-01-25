@@ -1,17 +1,15 @@
 package uk.co.tabish.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
+import uk.co.tabish.game.pixelman.input.InputState;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +47,9 @@ public class TwoDimensionalGame extends ApplicationAdapter {
 
     //Input state
     private static InputState inputState;
+
+    //Is an Android app
+    private boolean isAndroid = false;
 
     @Override
     public void create () {
@@ -111,6 +112,15 @@ public class TwoDimensionalGame extends ApplicationAdapter {
     //Handle input
     public void processInput() {
 
+    }
+
+    //Set as Android App
+    public void setAndroidApp() {
+        isAndroid = true;
+    }
+
+    public boolean isAndroid() {
+        return isAndroid;
     }
 
     //Add new screen

@@ -13,6 +13,7 @@ public class TitleScreen implements Screen {
     private BitmapFont font;
 
     private boolean clicked = false;
+    private boolean touched = false;
 
     private Texture title;
     private Texture click;
@@ -34,9 +35,10 @@ public class TitleScreen implements Screen {
 
     @Override
     public void update() {
-        if(PixelManGame.input().up) {
+        if(PixelManGame.input().up || (touched && !PixelManGame.input().a)) {
             clicked = true;
         }
+        touched = PixelManGame.input().a;
         flashCount++;
         if(flashCount>60){
             flashCount=0;

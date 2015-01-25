@@ -11,6 +11,8 @@ public class AndroidLauncher extends AndroidApplication {
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new PixelManGame(), config);
+        PixelManGame game = new PixelManGame();
+        game.setAndroidApp();
+		initialize(game, config);
 	}
 }

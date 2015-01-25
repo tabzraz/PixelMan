@@ -35,8 +35,13 @@ public class LoadingScreen implements Screen {
         manager.load("title/start.png", Texture.class);
         manager.load("title/title.png", Texture.class);
 
+        //Touch screen controls
+        manager.load("controls/up.png", Texture.class);
+        manager.load("controls/left.png", Texture.class);
+        manager.load("controls/right.png", Texture.class);
 
-        //---Textures---
+
+        //---Textures for game---
 
         //Background
         //Clouds
